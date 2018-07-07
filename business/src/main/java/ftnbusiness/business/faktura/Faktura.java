@@ -1,13 +1,20 @@
 package ftnbusiness.business.faktura;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import ftnbusiness.business.poslovnaGodina.PoslovnaGodina;
 import ftnbusiness.business.poslovniPartner.PoslovniPartner;
 import ftnbusiness.business.preduzece.Preduzece;
 
+@Entity
+@XmlRootElement(name="faktura")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Faktura {
 	@Id
 	@GeneratedValue
@@ -145,4 +152,9 @@ public class Faktura {
 		this.poslovnaGodina = poslovnaGodina;
 	}
 	
+	
+	public Faktura(NarudzbenicaDTO narudzbenicaDTO)
+	{
+		
+	}
 }
