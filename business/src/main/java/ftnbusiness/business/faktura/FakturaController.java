@@ -1,12 +1,8 @@
 package ftnbusiness.business.faktura;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.server.PathParam;
@@ -50,51 +46,36 @@ public class FakturaController {
 		return new ResponseEntity<Long>(fakturaService.addFaktura(novaFaktura), HttpStatus.OK);	
 	}
 	
+
 	@RequestMapping(method = RequestMethod.GET,value="/export/fakture/{id}")
-	public void postFakture(@PathParam("id") Long id, HttpServletResponse response) 
+	public ResponseEntity<HashMap<String,String>> postFakture(@PathParam("id") Long id, HttpServletResponse response) 
 	{
 		//Faktura novaFaktura = fakturaService.getById(id);
 		long derp =5;
 		
-		Faktura novaFaktura=new Faktura(derp, "123", derp, derp, derp, derp, derp, derp, new PoslovniPartner(), new Preduzece(), new PoslovnaGodina());
+		Faktura novaFaktura=new Faktura(derp, "Ovo je mock faktura", derp, derp, derp, derp, derp, derp, new PoslovniPartner(), new Preduzece(), new PoslovnaGodina());
 		try 
 		{
-			
-			
-			
-		      // get your file as InputStream
-			  JAXBContext context = JAXBContext.newInstance(Faktura.class);
-			  Marshaller marshaller = context.createMarshaller();
-			  marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-			  final OutputStream fileOutputStream = new FileOutputStream(new File(
-			          "target/test.xml"));
-			  marshaller.marshal(novaFaktura, fileOutputStream);
-			  fileOutputStream.flush();
-			  fileOutputStream.close();
- 
-			 
-			  final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			  outputStream.write("test".getBytes());
-			  marshaller.marshal(novaFaktura, outputStream);
-			  outputStream.flush();
-			  final InputStream is = new ByteArrayInputStream(outputStream.toByteArray());
-			  outputStream.close();
-			  
-			  
-			
-			
-			
-			
-			
+				
+				
+				
 		    
-		    // copy it to response's OutputStream
-		    org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
-		    response.flushBuffer();
+			JAXBContext context = JAXBContext.newInstance(Faktura.class);
+			Marshaller marshaller = context.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			 
+			StringWriter sw = new StringWriter();
+			marshaller.marshal(novaFaktura, sw);
+			 
+		    HashMap<String, String> retVal = new HashMap<>();
+		    retVal.put("fakuta", sw.toString());
+			  
+		    return new ResponseEntity<HashMap<String, String>>(retVal, HttpStatus.OK);
+				  
 	    } catch (Exception ex) {
 	      
 	        System.out.println(ex.toString());
 	    }
-	
-			
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 }
