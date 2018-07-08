@@ -9,7 +9,7 @@ import ftnbusiness.business.proizvod.Proizvod;
 
 public interface StavkaCenovnikaRepository extends JpaRepository<StavkaCenovnika, Long> {
 
-	StavkaCenovnika findByCenovnikAndProizvod(Cenovnik cenovnik, Proizvod proizvod);
+	List<StavkaCenovnika> findByCenovnikAndProizvod(Cenovnik cenovnik, Proizvod proizvod);
 
 	List<StavkaCenovnika> findByCenovnik(Cenovnik c);
 }
