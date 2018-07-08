@@ -63,8 +63,9 @@ public class CenovnikController {
 			StavkaCenovnika sc = new StavkaCenovnika();
 			sc.setCenovnik(c);
 			sc.setProizvod(dto.getStavke().get(i).getProizvod());
+			double staraCena = stavkaCenovnikaService.findCenaByCenovnikAndProizvod(cn, dto.getStavke().get(i).getProizvod());
 			sc.setCena(dto.getStavke().get(i).getProcenat()
-					*stavkaCenovnikaService.findCenaByCenovnikAndProizvod(cn, dto.getStavke().get(i).getProizvod()));
+					*staraCena/100+staraCena);
 			stavkaCenovnikaService.addStavkaCenovnika(sc);
 		}
 		return new ResponseEntity<>(c, HttpStatus.OK);
