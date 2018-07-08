@@ -1,5 +1,6 @@
 package ftnbusiness.business.faktura;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,4 +11,6 @@ import ftnbusiness.business.poslovniPartner.PoslovniPartner;
 public interface FakturaRepository extends JpaRepository<Faktura, Long>{
 
 	List<Faktura> findByPoslovniPartner(PoslovniPartner poslovniPartner);
+
+	List<Faktura> findByPoslovnaGodina(PoslovnaGodina poslovnaGodina);
 }

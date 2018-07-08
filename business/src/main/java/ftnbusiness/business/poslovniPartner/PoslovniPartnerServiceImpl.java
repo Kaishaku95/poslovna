@@ -1,5 +1,6 @@
 package ftnbusiness.business.poslovniPartner;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,13 @@ public class PoslovniPartnerServiceImpl implements PoslovniPartnerService{
 	}
 	@Override
 	public PoslovniPartner getById(Long id) {
-		// TODO Auto-generated method stub
 		Optional<PoslovniPartner> poslovniPartner = poslovniPartnerRepository.findById(id);
 		return poslovniPartner.get();
 		
+	}
+	@Override
+	public ArrayList<PoslovniPartner> findAll() {
+		return (ArrayList<PoslovniPartner>) poslovniPartnerRepository.findAll();
 	}
 
 }

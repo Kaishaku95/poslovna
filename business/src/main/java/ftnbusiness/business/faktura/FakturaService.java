@@ -2,6 +2,7 @@ package ftnbusiness.business.faktura;
 
 import java.util.ArrayList;
 
+import ftnbusiness.business.poslovnaGodina.PoslovnaGodina;
 import ftnbusiness.business.poslovniPartner.PoslovniPartner;
 import ftnbusiness.business.stavkaFakture.StavkaFakture;
 
@@ -16,4 +17,6 @@ public interface FakturaService {
 	Faktura getById(Long id);
 
 	ArrayList<Faktura> getFakture(PoslovniPartner byId);
+
+	ArrayList<Faktura> getFaktureIzGodine(PoslovnaGodina poslovnaGodina);
 }

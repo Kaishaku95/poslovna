@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,7 +26,9 @@ import ftnbusiness.business.cenovnik.Cenovnik;
 import ftnbusiness.business.cenovnik.CenovnikService;
 import ftnbusiness.business.pdv.PDV;
 import ftnbusiness.business.poslovnaGodina.PoslovnaGodina;
+import ftnbusiness.business.poslovnaGodina.PoslovnaGodinaService;
 import ftnbusiness.business.poslovniPartner.PoslovniPartner;
+import ftnbusiness.business.poslovniPartner.PoslovniPartnerService;
 import ftnbusiness.business.preduzece.Preduzece;
 import ftnbusiness.business.preduzece.PreduzeceService;
 import ftnbusiness.business.proizvod.Proizvod;
@@ -44,6 +47,12 @@ public class FakturaController {
 	private PreduzeceService preduzeceService;
 	
 	@Autowired
+	private PoslovnaGodinaService poslovnaGodinaService;
+	
+	@Autowired
+	private PoslovniPartnerService poslovniPartnerService;
+	
+	@Autowired
 	private ProizvodService proizvodService;
 	
 	@Autowired
@@ -59,6 +68,25 @@ public class FakturaController {
 	public ResponseEntity<ArrayList<Faktura>> getFakture() 
 	{
 		return new ResponseEntity<ArrayList<Faktura>>(fakturaService.getFakture(), HttpStatus.OK);	
+	}
+	
+	@RequestMapping(method = RequestMethod.GET,value="/fakture/{id:\\\\d+}")
+	public ResponseEntity<ArrayList<Faktura>> getFaktureIzGodine(@PathVariable Long id) 
+	{
+		PoslovnaGodina pg = poslovnaGodinaService.findOne(id);
+		return new ResponseEntity<ArrayList<Faktura>>(fakturaService.getFaktureIzGodine(pg), HttpStatus.OK);	
+	}
+	
+	@GetMapping("/poslovnegodine")
+	public ResponseEntity<ArrayList<PoslovnaGodina>> getPoslovneGodine() 
+	{
+		return new ResponseEntity<ArrayList<PoslovnaGodina>>(poslovnaGodinaService.findAll(), HttpStatus.OK);	
+	}
+	
+	@GetMapping("/partneri")
+	public ResponseEntity<ArrayList<PoslovniPartner>> getPoslovniPartneri() 
+	{
+		return new ResponseEntity<ArrayList<PoslovniPartner>>(poslovniPartnerService.findAll(), HttpStatus.OK);	
 	}
 	
 	@RequestMapping(method = RequestMethod.POST,value="/fakture")
