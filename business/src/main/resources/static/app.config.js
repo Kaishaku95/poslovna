@@ -5,24 +5,8 @@ angular.module('app')
 		$stateProvider
 			.state({
 				name: 'home',
-				redirectTo: 'home.link1',
+				redirectTo: 'linkA',
 				url: '/',
-				component: 'myHome'
-			})
-			.state({
-				name: 'home.link1',
-				url: '^/link-1',
-				template: '<h1>Link 1</h1>'
-			})
-			.state({
-				name: 'home.link2',
-				url: '^/link2',
-				template: '<h1>Link 2</h1>'
-			})
-			.state({
-				name: 'home.link3',
-				url: '^/link-3',
-				template: '<h1>Link 3</h1>'
 			})
 			.state({
 				name: 'linkA',
