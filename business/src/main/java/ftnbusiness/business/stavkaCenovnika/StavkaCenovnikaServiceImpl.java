@@ -1,5 +1,7 @@
 package ftnbusiness.business.stavkaCenovnika;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,10 @@ public class StavkaCenovnikaServiceImpl implements StavkaCenovnikaService {
 	@Override
 	public double findCenaByCenovnikAndProizvod(Cenovnik cn, Proizvod proizvod) {
 		return stavkaCenovnikaRepository.findByCenovnikAndProizvod(cn, proizvod).getCena();
+	}
+	@Override
+	public ArrayList<StavkaCenovnika> findByCenovnik(Cenovnik c) {
+		return (ArrayList<StavkaCenovnika>) stavkaCenovnikaRepository.findByCenovnik(c);
 	}
 
 }

@@ -1,5 +1,6 @@
 package ftnbusiness.business.cenovnik;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,11 +52,11 @@ public class CenovnikController {
 		return new ResponseEntity<>(cenovnik, HttpStatus.OK);
 	}
 	
-	/**pretpostavimo da se uvek menja najnoviji*/
-	@PostMapping
-	public ResponseEntity<Cenovnik> addCenovnik(@RequestBody CenovnikDTO dto) {
+	@PostMapping("/{id:\\d+}")
+	public ResponseEntity<Cenovnik> addCenovnik(@PathVariable Long id, 
+			@RequestBody CenovnikDTO dto) {
 		Cenovnik c = new Cenovnik();
-		Cenovnik cn = cenovnikService.findNewest();
+		Cenovnik cn = cenovnikService.findOne(id);
 		c.setDatumVazenja(dto.getDatum());
 		cenovnikService.addCenovnik(c);
 		for(int i = 0; i<dto.getStavke().size(); i++) {
@@ -67,5 +68,12 @@ public class CenovnikController {
 			stavkaCenovnikaService.addStavkaCenovnika(sc);
 		}
 		return new ResponseEntity<>(c, HttpStatus.OK);
+	}
+	
+	@GetMapping("/stavke/{id:\\d+}")
+	public ResponseEntity<List<StavkaCenovnika>> getStavke(@PathVariable Long id) {
+		Cenovnik c = cenovnikService.findOne(id);
+		ArrayList<StavkaCenovnika> lista = stavkaCenovnikaService.findByCenovnik(c);
+		return new ResponseEntity<>(lista, HttpStatus.OK);
 	}
 }
