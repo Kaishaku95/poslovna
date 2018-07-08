@@ -19,7 +19,7 @@ public class StavkaCenovnikaServiceImpl implements StavkaCenovnikaService {
 	}
 	@Override
 	public double findCenaByCenovnikAndProizvod(Cenovnik cn, Proizvod proizvod) {
-		return stavkaCenovnikaRepository.findByCenovnikAndProizvod(cn, proizvod).getCena();
+		return stavkaCenovnikaRepository.findByCenovnikAndProizvod(cn, proizvod).get(0).getCena();
 	}
 	@Override
 	public ArrayList<StavkaCenovnika> findByCenovnik(Cenovnik c) {
