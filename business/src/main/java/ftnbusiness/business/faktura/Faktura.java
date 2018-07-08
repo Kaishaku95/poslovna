@@ -1,5 +1,9 @@
 package ftnbusiness.business.faktura;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -153,8 +157,5 @@ public class Faktura {
 	}
 	
 	
-	public Faktura(NarudzbenicaDTO narudzbenicaDTO)
-	{
-		
-	}
+	
 }

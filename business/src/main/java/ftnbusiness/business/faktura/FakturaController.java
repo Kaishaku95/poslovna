@@ -1,3 +1,5 @@
+
+
 package ftnbusiness.business.faktura;
 
 import java.io.StringWriter;
@@ -25,6 +27,7 @@ import ftnbusiness.business.pdv.PDV;
 import ftnbusiness.business.poslovnaGodina.PoslovnaGodina;
 import ftnbusiness.business.poslovniPartner.PoslovniPartner;
 import ftnbusiness.business.preduzece.Preduzece;
+import ftnbusiness.business.preduzece.PreduzeceService;
 import ftnbusiness.business.proizvod.Proizvod;
 import ftnbusiness.business.proizvod.ProizvodService;
 import ftnbusiness.business.stavkaCenovnika.StavkaCenovnikaService;
@@ -36,7 +39,9 @@ import ftnbusiness.business.stopaPDV.StopaPDVService;
 public class FakturaController {
 
 	@Autowired
-	FakturaService fakturaService;	
+	private FakturaService fakturaService;	
+	@Autowired
+	private PreduzeceService preduzeceService;
 	
 	@Autowired
 	private ProizvodService proizvodService;
@@ -59,11 +64,11 @@ public class FakturaController {
 	@RequestMapping(method = RequestMethod.POST,value="/fakture")
 	public ResponseEntity<Long> postFakture(@RequestBody NarudzbenicaDTO narudzbenicaDTO) 
 	{
-		Faktura novaFaktura = new Faktura(narudzbenicaDTO);
+		Long idNoveFaktura = new FakturaFactory(preduzeceService.getByName("Balkan Promet")).fakturisi(narudzbenicaDTO);
 		
 		
 		
-		return new ResponseEntity<Long>(fakturaService.addFaktura(novaFaktura), HttpStatus.OK);	
+		return new ResponseEntity<Long>(idNoveFaktura, HttpStatus.OK);	
 	}
 	
 
@@ -120,3 +125,4 @@ public class FakturaController {
 		return new ResponseEntity<>(stavke, HttpStatus.OK);
 	}
 }
+

@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ftnbusiness.business.poslovniPartner.PoslovniPartner;
+
 @Service
 public class FakturaServiceImpl implements FakturaService{
 
@@ -32,6 +34,13 @@ public class FakturaServiceImpl implements FakturaService{
 		// TODO Auto-generated method stub
 		Optional<Faktura> faktura = fakturaRepository.findById(id);
 		return faktura.get();
+	}
+
+
+	@Override
+	public ArrayList<Faktura> getFakture(PoslovniPartner poslovniPartner) {
+		// TODO Auto-generated method stub
+		return (ArrayList<Faktura>) fakturaRepository.findByPoslovniPartner(poslovniPartner);
 	}
 
 }
