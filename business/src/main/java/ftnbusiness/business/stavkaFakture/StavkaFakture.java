@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import ftnbusiness.business.faktura.Faktura;
-import ftnbusiness.business.preduzece.Preduzece;
+import ftnbusiness.business.proizvod.Proizvod;
 
 @Entity
 public class StavkaFakture {
@@ -32,10 +32,10 @@ public class StavkaFakture {
 	private Faktura faktura;
 	
 	@ManyToOne
-	private Preduzece preduzece;
+	private Proizvod proizvod;
 
 	public StavkaFakture(Long id, int kolicina, double rabat, double jedinicnaCena, double stopaPDV, double osnovica,
-			double iznosPDV, double ukupanIznos, Faktura faktura, Preduzece preduzece) {
+			double iznosPDV, double ukupanIznos, Faktura faktura, Proizvod proizvod) {
 		super();
 		this.id = id;
 		this.kolicina = kolicina;
@@ -46,7 +46,7 @@ public class StavkaFakture {
 		this.iznosPDV = iznosPDV;
 		this.ukupanIznos = ukupanIznos;
 		this.faktura = faktura;
-		this.preduzece = preduzece;
+		this.proizvod = proizvod;
 	}
 
 	public StavkaFakture() {
@@ -125,12 +125,12 @@ public class StavkaFakture {
 		this.faktura = faktura;
 	}
 
-	public Preduzece getPreduzece() {
-		return preduzece;
+	public Proizvod getProizvod() {
+		return proizvod;
 	}
 
-	public void setPreduzece(Preduzece preduzece) {
-		this.preduzece = preduzece;
+	public void setProizvod(Proizvod proizvod) {
+		this.proizvod = proizvod;
 	}
 	
 	
