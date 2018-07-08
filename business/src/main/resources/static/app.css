@@ -1,0 +1,106 @@
+
+/* Colors */
+:root {
+	--fg_color: #d3dae3;
+	--base_color: #404552;
+	--bg_color: #383c4a;
+	--border_color: #2b2e39;
+	--selected_fg_color: #ffffff;
+	--selected_bg_color: #ff5f5f;
+	--selected_bg_color_transparent: #ff5f5f40;
+	--link_color: #f1a9a9;
+	--placeholder_text_color: #a8a8a8;
+}
+
+/* Lato font*/
+@font-face {
+	font-family: 'Lato';
+	src: local('Lato Regular'), local('Lato-Regular'), url(/font/lato/Lato-Regular.ttf);
+}
+
+body {
+	font-family: "Lato", sans-serif;
+	color: var(--fg_color);
+	background-color: var(--base_color);
+}
+
+*:focus {
+	border-color: var(--selected_bg_color) !important;
+	box-shadow: 0 0 0 0.2rem var(--selected_bg_color_transparent) !important;
+}
+
+a {
+	color: var(--link_color);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--selected_fg_color);
+	text-decoration: underline !important;
+	cursor: pointer;
+}
+
+.active {
+	color: var(--selected_fg_color);
+	background-color: var(--selected_bg_color);
+}
+
+.fab, .fas, .far, .fal {
+	font-size: 1.4rem;
+	margin: 0 0.2rem;
+}
+
+my-header .navbar {
+	background-color: var(--bg_color);
+}
+
+my-header .navbar-brand {
+	color: var(--selected_bg_color) !important;
+	font-size: 2rem;
+}
+
+my-sidebar {
+	background-color: var(--bg_color);
+	font-size: 1.1rem;
+}
+
+.panel {
+	background-color: var(--bg_color);
+	border: 1px solid var(--border_color);
+	padding: 2rem;
+}
+
+.btn-custom {
+	color: var(--selected_fg_color);
+	background-color: var(--selected_bg_color);
+}
+
+.card {
+	background-color: var(--bg_color);
+}
+
+.separate::after {
+	content: ' | ';
+}
+
+.table-dark {
+	color: var(--fg_color);
+	background-color: var(--bg_color);
+}
+
+.table-dark thead {
+	background-color: var(--border_color);
+}
+
+.active-row {
+	color: var(--selected_fg_color);
+	background-color: var(--base_color);
+}
+
+.custom-range::-webkit-slider-thumb {
+	background-color: var(--selected_bg_color);
+}
+
+.custom-range::-moz-range-thumb {
+	background-color: var(--selected_bg_color);
+}
