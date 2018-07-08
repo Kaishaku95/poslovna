@@ -2,6 +2,9 @@ package ftnbusiness.business.faktura;
 
 import java.util.ArrayList;
 
+import ftnbusiness.business.poslovniPartner.PoslovniPartner;
+import ftnbusiness.business.stavkaFakture.StavkaFakture;
+
 
 public interface FakturaService {
 
@@ -11,4 +14,6 @@ public interface FakturaService {
 	Long addFaktura(Faktura novaFaktura);
 
 	Faktura getById(Long id);
+
+	ArrayList<Faktura> getFakture(PoslovniPartner byId);
 }

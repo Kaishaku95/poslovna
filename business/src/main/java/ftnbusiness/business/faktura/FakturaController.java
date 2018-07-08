@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ftnbusiness.business.poslovnaGodina.PoslovnaGodina;
 import ftnbusiness.business.poslovniPartner.PoslovniPartner;
 import ftnbusiness.business.preduzece.Preduzece;
+import ftnbusiness.business.preduzece.PreduzeceService;
 
 
 @RestController
@@ -27,7 +28,9 @@ import ftnbusiness.business.preduzece.Preduzece;
 public class FakturaController {
 
 	@Autowired
-	FakturaService fakturaService;	
+	private FakturaService fakturaService;	
+	@Autowired
+	private PreduzeceService preduzeceService;
 	
 	
 	@RequestMapping(method = RequestMethod.GET,value="/fakture")
@@ -39,11 +42,11 @@ public class FakturaController {
 	@RequestMapping(method = RequestMethod.POST,value="/fakture")
 	public ResponseEntity<Long> postFakture(@RequestBody NarudzbenicaDTO narudzbenicaDTO) 
 	{
-		Faktura novaFaktura = new Faktura(narudzbenicaDTO);
+		Long idNoveFaktura = new FakturaFactory(preduzeceService.getByName("Balkan Promet")).fakturisi(narudzbenicaDTO);
 		
 		
 		
-		return new ResponseEntity<Long>(fakturaService.addFaktura(novaFaktura), HttpStatus.OK);	
+		return new ResponseEntity<Long>(idNoveFaktura, HttpStatus.OK);	
 	}
 	
 
