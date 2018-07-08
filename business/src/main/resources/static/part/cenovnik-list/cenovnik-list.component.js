@@ -38,5 +38,26 @@ angular.module('cenovnikList')
 			this.selected = (stavka) => {
 				this.selectedStavka = stavka;
 			};
+
+			this.add = () => {
+				this.newCenovnik.datum = this.newCenovnik.datum.getTime();
+				this.newCenovnik.stavke = [];
+				for(const stavka of this.stavke) {
+					this.newCenovnik.stavke.push({
+						procenat: stavka.procenat,
+						proizvod: stavka.proizvod
+					});
+				}
+				CenovnikService.add(this.selectedCenovnik.id, this.newCenovnik)
+					.then( (response) => {
+						this.cenovnici.push(response.data);
+						this.selectedCenovnik = response.data;
+						this.changeCenovnik();
+						this.isAddMode = false;
+						this.addStatus = '';
+					}, () => {
+						this.addStatus = 'Greška pri dodavanju cenovnika';
+					});
+			};
 		}
 	});

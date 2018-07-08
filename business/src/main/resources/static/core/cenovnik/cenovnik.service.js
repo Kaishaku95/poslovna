@@ -13,4 +13,7 @@ angular.module('core.cenovnik')
 		this.getStavke = (id) => {
 			return $http.get(`${prefix}/stavke/${id}`);
 		};
+		this.add = (idOfCopy, data) => {
+			return $http.post(`${prefix}/${idOfCopy}`, data);
+		};
 	});

@@ -96,3 +96,11 @@ my-sidebar {
 	color: var(--selected_fg_color);
 	background-color: var(--base_color);
 }
+
+.custom-range::-webkit-slider-thumb {
+	background-color: var(--selected_bg_color);
+}
+
+.custom-range::-moz-range-thumb {
+	background-color: var(--selected_bg_color);
+}
