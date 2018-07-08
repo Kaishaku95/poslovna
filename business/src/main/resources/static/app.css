@@ -7,6 +7,7 @@
 	--border_color: #2b2e39;
 	--selected_fg_color: #ffffff;
 	--selected_bg_color: #ff5f5f;
+	--selected_bg_color_transparent: #ff5f5f40;
 	--link_color: #f1a9a9;
 	--placeholder_text_color: #a8a8a8;
 }
@@ -24,7 +25,8 @@ body {
 }
 
 *:focus {
-	outline-color: var(--selected_bg_color);
+	border-color: var(--selected_bg_color) !important;
+	box-shadow: 0 0 0 0.2rem var(--selected_bg_color_transparent) !important;
 }
 
 a {
