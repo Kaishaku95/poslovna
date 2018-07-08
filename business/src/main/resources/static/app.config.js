@@ -5,13 +5,13 @@ angular.module('app')
 		$stateProvider
 			.state({
 				name: 'home',
-				redirectTo: 'linkA',
+				redirectTo: 'cenovnici',
 				url: '/',
 			})
 			.state({
-				name: 'linkA',
-				url: '/link-a',
-				template: '<h1>Link A</h1>'
+				name: 'cenovnici',
+				url: '/cenovnici',
+				component: 'myCenovnikList'
 			})
 			.state({
 				name: 'linkB',

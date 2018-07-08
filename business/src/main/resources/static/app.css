@@ -80,3 +80,17 @@ my-sidebar {
 .separate::after {
 	content: ' | ';
 }
+
+.table-dark {
+	color: var(--fg_color);
+	background-color: var(--bg_color);
+}
+
+.table-dark thead {
+	background-color: var(--border_color);
+}
+
+.active-row {
+	color: var(--selected_fg_color);
+	background-color: var(--base_color);
+}
