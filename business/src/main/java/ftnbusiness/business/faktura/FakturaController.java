@@ -192,7 +192,10 @@ public class FakturaController {
 		double rabat = sracunajRabat(narudzbenica);
 		for (StavkaFaktureDTO stavkaFakture : narudzbenica.getStavke())
 		{
+			if(stavkaFakture.getKolicina()>0)
+			{
 			stavke.add(napraviStavku(stavkaFakture, rabat));
+			}
 		}
 		double ukupnoRabat =0;
 		double ukupnoBezPDV=0;
@@ -201,7 +204,7 @@ public class FakturaController {
 		for (StavkaFakture stavkaFakture : stavke)
 		{
 			ukupnoRabat+=stavkaFakture.getRabat();
-			ukupnoBezPDV+=(stavkaFakture.getOsnovica()-stavkaFakture.getRabat());
+			ukupnoBezPDV+=(stavkaFakture.getOsnovica());
 			ukupanPDV+=stavkaFakture.getIznosPDV();
 			ukupno +=stavkaFakture.getUkupanIznos();
 		}
@@ -231,10 +234,10 @@ public class FakturaController {
 		retVal.setStopaPDV(stavkaFakture.getStopaPDV());
 
 		double vrednostStavke = stavkaFakture.getCena()*stavkaFakture.getKolicina();
-		retVal.setRabat(vrednostStavke*(100-rabat)/100);
+		retVal.setRabat(vrednostStavke*(rabat)/100);
 		retVal.setOsnovica(vrednostStavke - retVal.getRabat());
 		retVal.setIznosPDV(retVal.getOsnovica()*retVal.getStopaPDV()/100);
-		retVal.setUkupanIznos(vrednostStavke-retVal.getRabat()+retVal.getIznosPDV());
+		retVal.setUkupanIznos(retVal.getOsnovica()+retVal.getIznosPDV());
 
 		return retVal;
 	}
@@ -247,7 +250,7 @@ public class FakturaController {
 
 
 
-		return rabatPoslovnogPartnera+rabatNarudzbenice;
+		return ((int)10*(rabatPoslovnogPartnera+rabatNarudzbenice))/10.0;
 	}
 
 
