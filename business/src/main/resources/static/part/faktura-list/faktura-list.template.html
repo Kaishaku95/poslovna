@@ -12,7 +12,7 @@
 	</select>
 </form>
 
-<h2>Lista faktura za poslovnu godinu {{$ctrl.selectedGodina.godina}}</h2>
+<h2>Lista faktura za poslovnu godinu {{$ctrl.selectedGodina.godina}}:</h2>
 
 <!--Navigation buttons-->
 <div class="btn-toolbar mb-3">
@@ -72,6 +72,7 @@
 				<th>Ukupan iznos bez PDV:</th>
 				<th>Ukupan PDV:</th>
 				<th>Ukupno za plaćanje:</th>
+				<th class="w-25">Actions:</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -85,6 +86,23 @@
 					<td>{{faktura.ukupanIznosBezPDV | number}}</td>
 					<td>{{faktura.ukupanPDV | number}}</td>
 					<td>{{faktura.ukupnoZaPlacanje | number}}</td>
+					<td class="w-25">
+						<button class="btn btn-custom" ng-click="$ctrl.report(faktura)">
+							<i class="fas fa-file-invoice"></i>
+							Izveštaj za kupca
+						</button>
+						<button class="btn btn-custom" ng-click="$ctrl.export(faktura)">
+							<i class="fas fa-file-export"></i>
+							Izvoz u XML
+						</button>
+						<a class="btn btn-custom"
+							ng-if="faktura.export"
+							ng-href="data:text/xml;base64,{{faktura.export}}"
+							download="{{faktura.brojFakture}}.xml">
+								<i class="fas fa-download"></i>
+								Preuzmi XML
+						</a>
+					</td>
 			</tr>
 		</tbody>
 	</table>

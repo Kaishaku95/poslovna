@@ -19,7 +19,7 @@ angular.module('core.faktura')
 		this.getPoslovniPartneri = () => {
 			return $http.get(`${prefix}/partneri`);
 		};
-		this.getOne = (id) => {
+		this.getExport = (id) => {
 			return $http.get(`${prefix}/export/fakture/${id}`);
 		};
 		this.order = (data) => {

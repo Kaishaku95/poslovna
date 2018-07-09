@@ -39,18 +39,10 @@ angular.module('fakturaList')
 				this.selectedFaktura = faktura;
 			};
 
-			this.add = () => {
-				this.newGodina.datum = this.newGodina.ddatum.getTime();
-				this.newGodina.fakture = this.fakture;
-				FakturaService.add(this.selectedGodina.id, this.newGodina)
+			this.export = (faktura) => {
+				FakturaService.getExport(faktura.id)
 					.then( (response) => {
-						this.godine.push(response.data);
-						this.selectedGodina = response.data;
-						this.changeGodina();
-						this.isAddMode = false;
-						this.addStatus = '';
-					}, () => {
-						this.addStatus = 'Greška pri dodavanju cenovnika';
+						faktura.export = response.data.faktura;
 					});
 			};
 		}
