@@ -13,6 +13,7 @@ public class PoslovniPartnerServiceImpl implements PoslovniPartnerService{
 
 	@Autowired
 	private PoslovniPartnerRepository poslovniPartnerRepository;
+	
 	@Override
 	public Long addPoslovniPartner(PoslovniPartner pp) {
 		return poslovniPartnerRepository.save(pp).getId();

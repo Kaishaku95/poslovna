@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import ftnbusiness.business.poslovnaGodina.PoslovnaGodinaService;
 import ftnbusiness.business.poslovniPartner.PoslovniPartnerService;
@@ -15,16 +16,18 @@ import ftnbusiness.business.proizvod.ProizvodService;
 import ftnbusiness.business.stavkaFakture.StavkaFakture;
 import ftnbusiness.business.stavkaFakture.StavkaFaktureService;
 
+
 public class FakturaFactory {
 
 	
 	@Autowired
-	PoslovniPartnerService poslovniPartnerService;
-	@Autowired
-	PoslovnaGodinaService poslovnaGodinaService;
+	private PoslovniPartnerService poslovniPartnerService;
 	
 	@Autowired
-	ProizvodService	proizvodService;
+	private PoslovnaGodinaService poslovnaGodinaService;
+	
+	@Autowired
+	private ProizvodService	proizvodService;
 	
 	@Autowired
 	private FakturaService fakturaService;
