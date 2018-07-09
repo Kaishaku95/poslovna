@@ -14,6 +14,11 @@ angular.module('proizvodList')
 			};
 			this.refresh();
 
+			FakturaService.getPoslovniPartneri()
+				.then( (response) => {
+					this.partneri = response.data;
+				});
+
 			this.first = () => {
 				this.selected(this.stavke[0]);
 			};

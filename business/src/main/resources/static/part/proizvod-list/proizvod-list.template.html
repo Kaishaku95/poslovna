@@ -59,10 +59,15 @@
 
 <!--Add new form-->
 <form ng-if="$ctrl.isAddMode" name="addNarudzbenicaForm" class="form-inline mb-1">
-	<input type="number"
-		class="form-control mr-2"
+	<label for="partnerSelect" class="mr-2">Poslovni partner:</label>
+	<select id="partnerSelect"
+		class="form-control mr-sm-2 custom-select"
 		ng-model="$ctrl.narudzbenica.idPoslovnogPartnera"
-		required/>
+		required>
+			<option value="">---Izaberite poslovnog partnera---</option>
+			<option ng-repeat="partner in $ctrl.partneri track by partner.id"
+				ng-value="partner.id">{{partner.naziv}}</option>
+	</select>
 	<input type="submit"
 		class="btn btn-custom mr-2"
 		value="Naruči"
