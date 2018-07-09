@@ -20,6 +20,7 @@ public class PreduzeceServiceImpl implements PreduzeceService{
 	public Preduzece getByName(String naziv) {
 		// TODO Auto-generated method stub
 		List<Preduzece> preduzeca = preduzeceRepository.findByNaziv(naziv);
+		
 		return preduzeca.get(0);
 	}
 	

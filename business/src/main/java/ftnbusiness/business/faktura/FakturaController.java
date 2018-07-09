@@ -70,7 +70,7 @@ public class FakturaController {
 		return new ResponseEntity<ArrayList<Faktura>>(fakturaService.getFakture(), HttpStatus.OK);	
 	}
 	
-	@RequestMapping(method = RequestMethod.GET,value="/fakture/{id:\\\\d+}")
+	@RequestMapping(method = RequestMethod.GET,value="/fakture/{id:\\d+}")
 	public ResponseEntity<ArrayList<Faktura>> getFaktureIzGodine(@PathVariable Long id) 
 	{
 		PoslovnaGodina pg = poslovnaGodinaService.findOne(id);
@@ -92,7 +92,7 @@ public class FakturaController {
 	@RequestMapping(method = RequestMethod.POST,value="/fakture")
 	public ResponseEntity<Long> postFakture(@RequestBody NarudzbenicaDTO narudzbenicaDTO) 
 	{
-		Long idNoveFaktura = new FakturaFactory(preduzeceService.getByName("Balkan Promet")).fakturisi(narudzbenicaDTO);
+		Long idNoveFaktura = new FakturaFactory(preduzeceService.getByName("Balkan promet")).fakturisi(narudzbenicaDTO);
 		
 		
 		
