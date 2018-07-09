@@ -14,9 +14,9 @@ angular.module('app')
 				component: 'myCenovnikList'
 			})
 			.state({
-				name: 'linkB',
-				url: '/link-b',
-				template: '<h1>Link B</h1>'
+				name: 'proizvodi',
+				url: '/proizvodi',
+				component: 'myProizvodList'
 			})
 			.state({
 				name: 'linkC',

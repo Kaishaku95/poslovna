@@ -3,5 +3,6 @@
 angular.module('app', [
 	'ui.router',
 	'header',
-	'cenovnikList'
+	'cenovnikList',
+	'proizvodList'
 ]);
