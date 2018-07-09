@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-	.config(function($stateProvider, $urlRouterProvider) {
+	.config(function($stateProvider, $urlRouterProvider, $compileProvider) {
 		$stateProvider
 			.state({
 				name: 'home',
@@ -32,4 +32,6 @@ angular.module('app')
 		$urlRouterProvider
 			.when('', '/')
 			.otherwise('/error');
+
+		$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|s?ftp|mailto|tel|file|data):/);
 	});
