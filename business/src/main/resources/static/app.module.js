@@ -4,5 +4,6 @@ angular.module('app', [
 	'ui.router',
 	'header',
 	'cenovnikList',
-	'proizvodList'
+	'proizvodList',
+	'fakturaList'
 ]);

@@ -19,9 +19,9 @@ angular.module('app')
 				component: 'myProizvodList'
 			})
 			.state({
-				name: 'linkC',
-				url: '/link-c',
-				template: '<h1>Link C</h1>'
+				name: 'fakture',
+				url: '/fakture',
+				component: 'myFakturaList'
 			})
 			.state({
 				name: 'error',
