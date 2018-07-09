@@ -40,14 +40,8 @@ angular.module('cenovnikList')
 			};
 
 			this.add = () => {
-				this.newCenovnik.datum = this.newCenovnik.datum.getTime();
-				this.newCenovnik.stavke = [];
-				for(const stavka of this.stavke) {
-					this.newCenovnik.stavke.push({
-						procenat: stavka.procenat,
-						proizvod: stavka.proizvod
-					});
-				}
+				this.newCenovnik.datum = this.newCenovnik.ddatum.getTime();
+				this.newCenovnik.stavke = this.stavke;
 				CenovnikService.add(this.selectedCenovnik.id, this.newCenovnik)
 					.then( (response) => {
 						this.cenovnici.push(response.data);

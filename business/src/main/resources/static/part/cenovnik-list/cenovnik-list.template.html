@@ -1,4 +1,4 @@
-<h2>Cenovnici:</h2>
+<h2 class="mt-3">Cenovnici:</h2>
 <form class="form-inline mb-3">
 	<label for="cenovnikSelect" class="mr-2">Izaberite cenovnik:</label>
 	<select id="cenovnikSelect"
@@ -12,10 +12,10 @@
 	</select>
 </form>
 
-<h2 ng-if="!$ctrl.isAddMode" class="mb-3">
+<h2 ng-if="!$ctrl.isAddMode" class="mt-3">
 	Lista stavki za cenovnik od {{$ctrl.selectedCenovnik.datumVazenja | date: 'longDate'}}:
 </h2>
-<h2 ng-if="$ctrl.isAddMode">
+<h2 ng-if="$ctrl.isAddMode" class="mt-3">
 	Dodavanje novog cenovnika:
 </h2>
 
@@ -75,7 +75,7 @@
 <form ng-if="$ctrl.isAddMode" name="addCenovnikForm" class="form-inline mb-1">
 	<input type="date"
 		class="form-control mr-2"
-		ng-model="$ctrl.newCenovnik.datum"
+		ng-model="$ctrl.newCenovnik.ddatum"
 		required/>
 	<input type="submit"
 		class="btn btn-custom mr-2"
@@ -98,7 +98,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="stavka in $ctrl.stavke | filter:$ctrl.search"
+			<tr ng-repeat="stavka in $ctrl.stavke | filter:$ctrl.search track by stavka.id"
 				ng-click="$ctrl.selected(stavka)"
 				ng-class="{'active-row': $ctrl.selectedStavka.id === stavka.id}">
 					<td>{{stavka.proizvod.naziv}}</td>
