@@ -19,6 +19,7 @@ import javax.xml.bind.Marshaller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,101 +49,101 @@ import ftnbusiness.business.stopaPDV.StopaPDVService;
 public class FakturaController {
 
 	private static int brojFakture =0;
-	
+
 	@Autowired
-	private FakturaService fakturaService;	
+	private FakturaService fakturaService;
 	@Autowired
 	private PreduzeceService preduzeceService;
-	
+
 	@Autowired
 	private PoslovnaGodinaService poslovnaGodinaService;
-	
+
 	@Autowired
 	private PoslovniPartnerService poslovniPartnerService;
-	
+
 	@Autowired
 	private ProizvodService proizvodService;
-	
+
 	@Autowired
 	private StopaPDVService stopaPDVService;
-	
+
 	@Autowired
 	private StavkaCenovnikaService stavkaCenovnikaService;
-	
+
 	@Autowired
 	private StavkaFaktureService stavkaFaktureService;
-	
+
 	@Autowired
 	private CenovnikService cenovnikService;
-	
+
 	@RequestMapping(method = RequestMethod.GET,value="/fakture")
-	public ResponseEntity<ArrayList<Faktura>> getFakture() 
+	public ResponseEntity<ArrayList<Faktura>> getFakture()
 	{
-		return new ResponseEntity<ArrayList<Faktura>>(fakturaService.getFakture(), HttpStatus.OK);	
+		return new ResponseEntity<ArrayList<Faktura>>(fakturaService.getFakture(), HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET,value="/fakture/{id:\\d+}")
-	public ResponseEntity<ArrayList<Faktura>> getFaktureIzGodine(@PathVariable Long id) 
+	public ResponseEntity<ArrayList<Faktura>> getFaktureIzGodine(@PathVariable Long id)
 	{
 		PoslovnaGodina pg = poslovnaGodinaService.findOne(id);
-		return new ResponseEntity<ArrayList<Faktura>>(fakturaService.getFaktureIzGodine(pg), HttpStatus.OK);	
+		return new ResponseEntity<ArrayList<Faktura>>(fakturaService.getFaktureIzGodine(pg), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/poslovnegodine")
-	public ResponseEntity<ArrayList<PoslovnaGodina>> getPoslovneGodine() 
+	public ResponseEntity<ArrayList<PoslovnaGodina>> getPoslovneGodine()
 	{
-		return new ResponseEntity<ArrayList<PoslovnaGodina>>(poslovnaGodinaService.findAll(), HttpStatus.OK);	
+		return new ResponseEntity<ArrayList<PoslovnaGodina>>(poslovnaGodinaService.findAll(), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/partneri")
-	public ResponseEntity<ArrayList<PoslovniPartner>> getPoslovniPartneri() 
+	public ResponseEntity<ArrayList<PoslovniPartner>> getPoslovniPartneri()
 	{
-		return new ResponseEntity<ArrayList<PoslovniPartner>>(poslovniPartnerService.findAll(), HttpStatus.OK);	
+		return new ResponseEntity<ArrayList<PoslovniPartner>>(poslovniPartnerService.findAll(), HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST,value="/fakture")
-	public ResponseEntity<Long> postFakture(@RequestBody NarudzbenicaDTO narudzbenicaDTO) 
+	public ResponseEntity<Long> postFakture(@RequestBody NarudzbenicaDTO narudzbenicaDTO)
 	{
 		Long idNoveFaktura = fakturisi(narudzbenicaDTO,preduzeceService.getByName("Balkan promet"));
-		
-		
-		
-		return new ResponseEntity<Long>(idNoveFaktura, HttpStatus.OK);	
+
+
+
+		return new ResponseEntity<Long>(idNoveFaktura, HttpStatus.OK);
 	}
-	
+
 
 	@RequestMapping(method = RequestMethod.GET,value="/export/fakture/{id}")
-	public ResponseEntity<HashMap<String,String>> postFakture(@PathParam("id") Long id, HttpServletResponse response) 
+	public ResponseEntity<HashMap<String,String>> postFakture(@PathParam("id") Long id, HttpServletResponse response)
 	{
 		//Faktura novaFaktura = fakturaService.getById(id);
 		long derp =5;
-		
+
 		Faktura novaFaktura=new Faktura(derp, "Ovo je mock faktura", derp, derp, derp, derp, derp, derp, new PoslovniPartner(), new Preduzece(), new PoslovnaGodina());
-		try 
+		try
 		{
-				
-				
-				
-		    
+
+
+
+
 			JAXBContext context = JAXBContext.newInstance(Faktura.class);
 			Marshaller marshaller = context.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-			 
+
 			StringWriter sw = new StringWriter();
 			marshaller.marshal(novaFaktura, sw);
-			 
+
 		    HashMap<String, String> retVal = new HashMap<>();
-		    retVal.put("fakuta", sw.toString());
-			  
+		    retVal.put("faktura", Base64Utils.encodeToString(sw.toString().getBytes()));
+
 		    return new ResponseEntity<HashMap<String, String>>(retVal, HttpStatus.OK);
-				  
+
 	    } catch (Exception ex) {
-	      
+
 	        System.out.println(ex.toString());
 	    }
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
-	
+
 	@GetMapping("/stavke")
 	public ResponseEntity<List<StavkaFaktureDTO>> getStavke() {
 		ArrayList<StavkaFaktureDTO> stavke = new ArrayList<>();
@@ -164,7 +165,7 @@ public class FakturaController {
 		return new ResponseEntity<>(stavke, HttpStatus.OK);
 	}
 
-	public Long fakturisi(NarudzbenicaDTO narudzbenica, Preduzece preduzece)	
+	public Long fakturisi(NarudzbenicaDTO narudzbenica, Preduzece preduzece)
 	{
 		Faktura faktura = new Faktura();
 
@@ -172,12 +173,12 @@ public class FakturaController {
 
 		faktura.setDatumFakture(cal.getTime().getTime());
 		Date date = new Date();
-		cal.setTime(date);   // assigns calendar to given date 
+		cal.setTime(date);   // assigns calendar to given date
 		int sat =cal.get(Calendar.HOUR_OF_DAY); // gets hour in 24h format
 		if( sat<8)
 		{
 			cal.add(Calendar.DATE, -1);
-			faktura.setDatumValute(cal.getTime().getTime()); 
+			faktura.setDatumValute(cal.getTime().getTime());
 		}else
 		{
 			faktura.setDatumValute(faktura.getDatumFakture());
@@ -186,10 +187,10 @@ public class FakturaController {
 		faktura.setPoslovniPartner(poslovniPartnerService.getById(narudzbenica.getIdPoslovnogPartnera()));
 		faktura.setBrojFakture(napraviIme(faktura));
 		faktura.setPoslovnaGodina(poslovnaGodinaService.getNezakljucenaZaPreduzece(preduzece));
-		    
+
 		ArrayList<StavkaFakture> stavke = new ArrayList<StavkaFakture>();
 		double rabat = sracunajRabat(narudzbenica);
-		for (StavkaFaktureDTO stavkaFakture : narudzbenica.getStavke()) 
+		for (StavkaFaktureDTO stavkaFakture : narudzbenica.getStavke())
 		{
 			stavke.add(napraviStavku(stavkaFakture, rabat));
 		}
@@ -197,7 +198,7 @@ public class FakturaController {
 		double ukupnoBezPDV=0;
 		double ukupanPDV=0;
 		double ukupno = 0;
-		for (StavkaFakture stavkaFakture : stavke) 
+		for (StavkaFakture stavkaFakture : stavke)
 		{
 			ukupnoRabat+=stavkaFakture.getRabat();
 			ukupnoBezPDV+=(stavkaFakture.getOsnovica()-stavkaFakture.getRabat());
@@ -208,15 +209,15 @@ public class FakturaController {
 		faktura.setUkupanIznosBezPDV(ukupnoBezPDV);
 		faktura.setUkupanPDV(ukupanPDV);
 		faktura.setUkupnoZaPlacanje(ukupno);
-		
+
 		long retVal =fakturaService.addFaktura(faktura);
-		for (StavkaFakture stavkaFakture : stavke) 
+		for (StavkaFakture stavkaFakture : stavke)
 		{
 			stavkaFakture.setFaktura(faktura);
 			stavkaFaktureService.addStavkaFakture(stavkaFakture);
 		}
-		
-		
+
+
 
 		return retVal;
 	}
@@ -225,16 +226,16 @@ public class FakturaController {
 		StavkaFakture retVal = new StavkaFakture();
 		retVal.setKolicina((int)stavkaFakture.getKolicina());
 		retVal.setProizvod(proizvodService.getById(stavkaFakture.getProizvod().getId()));
-		
+
 		retVal.setJedinicnaCena(stavkaFakture.getCena());
 		retVal.setStopaPDV(stavkaFakture.getStopaPDV());
-		
+
 		double vrednostStavke = stavkaFakture.getCena()*stavkaFakture.getKolicina();
 		retVal.setRabat(vrednostStavke*(100-rabat)/100);
 		retVal.setOsnovica(vrednostStavke - retVal.getRabat());
 		retVal.setIznosPDV(retVal.getOsnovica()*retVal.getStopaPDV()/100);
 		retVal.setUkupanIznos(vrednostStavke-retVal.getRabat()+retVal.getIznosPDV());
-		
+
 		return retVal;
 	}
 
@@ -243,39 +244,39 @@ public class FakturaController {
 		// TODO Auto-generated method stub
 		double rabatPoslovnogPartnera=sracunajRabatPoslovnogPartnera(narudzbenica.getIdPoslovnogPartnera());
 		double rabatNarudzbenice=sracunajRabatNarudzbenice(narudzbenica.getStavke());
-		
-		
-		
+
+
+
 		return rabatPoslovnogPartnera+rabatNarudzbenice;
 	}
 
 
-	
+
 
 
 	private double sracunajRabatPoslovnogPartnera(Long idPoslovnogPartnera) {
 		// TODO Auto-generated method stub
 		double maxRabat = 5.0;
-		
+
 		int brojSaradnji = fakturaService.getFakture().size();
 		if(brojSaradnji==0)
 		{
 			return 0;
 		}
 		int brojSaradnjiSaPartnerom = fakturaService.getFakture(poslovniPartnerService.getById(idPoslovnogPartnera)).size();
-		
-		
-		
+
+
+
 		return (brojSaradnjiSaPartnerom/brojSaradnji)*maxRabat;
 	}
 	private double sracunajRabatNarudzbenice(ArrayList<StavkaFaktureDTO> stavke) {
 		// TODO Auto-generated method stub
 		double maxRabat=10.0; //Maksimalni moguci rabat na kolicinu
 		double trazenaCena=100000; //Cena potrebna za ostavernje maksimalnog moguceg rabata
-		
+
 		double ostvarenaCena=0;
-		
-		for (StavkaFaktureDTO stavkaFaktureDTO : stavke) 
+
+		for (StavkaFaktureDTO stavkaFaktureDTO : stavke)
 		{
 			ostvarenaCena+=stavkaFaktureDTO.getCena()*stavkaFaktureDTO.getKolicina();
 		}
@@ -283,8 +284,8 @@ public class FakturaController {
 		{
 			return maxRabat;
 		}
-		
-		
+
+
 		return (ostvarenaCena/trazenaCena)*maxRabat;
 	}
 
@@ -292,7 +293,7 @@ public class FakturaController {
 	{
 		SimpleDateFormat f = new SimpleDateFormat("ddMMyy");
 		StringBuilder sb = new StringBuilder();
-		
+
 		sb.append(f.format(new Date()));
 		sb.append("-");
 		if(brojFakture<10 )
@@ -311,8 +312,8 @@ public class FakturaController {
 		sb.append(++brojFakture);
 		sb.append("-");
 		sb.append(new Random().nextInt(100000));
-		
-		
+
+
 		return sb.toString();
 	}
 }
