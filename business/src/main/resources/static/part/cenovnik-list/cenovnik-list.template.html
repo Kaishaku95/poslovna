@@ -73,7 +73,9 @@
 
 <!--Add new form-->
 <form ng-if="$ctrl.isAddMode" name="addCenovnikForm" class="form-inline mb-1">
+	<label for="dateInput" class="mr-2">Datum početka važenja:</label>
 	<input type="date"
+		id="dateInput"
 		class="form-control mr-2"
 		ng-model="$ctrl.newCenovnik.ddatum"
 		required/>

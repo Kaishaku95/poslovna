@@ -39,6 +39,12 @@ angular.module('fakturaList')
 				this.selectedFaktura = faktura;
 			};
 
+			this.report = (faktura) => {
+				FakturaService.getReport(faktura.id)
+					.then( (response) => {
+						faktura.report = response.data.report;
+					});
+			};
 			this.export = (faktura) => {
 				FakturaService.getExport(faktura.id)
 					.then( (response) => {

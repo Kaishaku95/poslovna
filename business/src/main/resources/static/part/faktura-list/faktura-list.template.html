@@ -72,7 +72,7 @@
 				<th>Ukupan iznos bez PDV:</th>
 				<th>Ukupan PDV:</th>
 				<th>Ukupno za plaćanje:</th>
-				<th class="w-25">Actions:</th>
+				<th class="w-25">Akcije:</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -95,6 +95,13 @@
 							<i class="fas fa-file-export"></i>
 							Izvoz u XML
 						</button>
+						<a class="btn btn-custom mb-1"
+							ng-if="faktura.report"
+							ng-href="data:application/pdf;base64,{{faktura.report}}"
+							download="{{faktura.brojFakture}}.pdf">
+								<i class="fas fa-download"></i>
+								Preuzmi izveštaj
+						</a>
 						<a class="btn btn-custom mb-1"
 							ng-if="faktura.export"
 							ng-href="data:text/xml;base64,{{faktura.export}}"

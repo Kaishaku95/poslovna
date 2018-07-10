@@ -13,7 +13,6 @@ angular.module('cenovnikList')
 			this.changeCenovnik = () => {
 				CenovnikService.getStavke(this.selectedCenovnik.id)
 					.then( (response) => {
-						console.log(response.data);
 						this.stavke = response.data;
 					});
 			};
