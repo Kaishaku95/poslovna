@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import ftnbusiness.business.cenovnik.Cenovnik;
 import ftnbusiness.business.cenovnik.CenovnikService;
+import ftnbusiness.business.faktura.Faktura;
+import ftnbusiness.business.faktura.FakturaService;
 import ftnbusiness.business.grupaProizvoda.GrupaProizvoda;
 import ftnbusiness.business.grupaProizvoda.GrupaProizvodaService;
 import ftnbusiness.business.jedinicaMere.JedinicaMere;
@@ -26,6 +28,8 @@ import ftnbusiness.business.proizvod.Proizvod;
 import ftnbusiness.business.proizvod.ProizvodService;
 import ftnbusiness.business.stavkaCenovnika.StavkaCenovnika;
 import ftnbusiness.business.stavkaCenovnika.StavkaCenovnikaService;
+import ftnbusiness.business.stavkaFakture.StavkaFakture;
+import ftnbusiness.business.stavkaFakture.StavkaFaktureService;
 import ftnbusiness.business.stopaPDV.StopaPDV;
 import ftnbusiness.business.stopaPDV.StopaPDVService;
 import ftnbusiness.business.tipPoslovnogPartnera.TipPoslovnogPartnera;
@@ -71,6 +75,12 @@ public class TestData {
 	
 	@Autowired
 	private PoslovniPartnerService poslovniPartnerService;
+	
+	@Autowired
+	private FakturaService fakturaService;
+	
+	@Autowired
+	private StavkaFaktureService stavkaFaktureService;
 	
 	@PostConstruct
 	private void init() {
@@ -396,5 +406,53 @@ public class TestData {
 		poslovnaGodinaService.addPoslovnaGodina(pg1);
 		poslovnaGodinaService.addPoslovnaGodina(pg2);
 		poslovnaGodinaService.addPoslovnaGodina(pg3);
+
+		Faktura f = new Faktura();
+		f.setBrojFakture("1");
+		f.setDatumFakture(1514764800000l);
+		f.setDatumValute(1514764800000l);
+		f.setPoslovnaGodina(pg1);
+		f.setPoslovniPartner(pp4);
+		f.setPreduzece(p);
+		f.setUkupanIznosBezPDV(0);
+		f.setUkupanPDV(0);
+		f.setUkupanRabat(0);
+		f.setUkupnoZaPlacanje(0);
+		fakturaService.addFaktura(f);
+		Faktura f2 = new Faktura();
+		f2.setBrojFakture("2");
+		f2.setDatumFakture(1514764800000l);
+		f2.setDatumValute(1514764800000l);
+		f2.setPoslovnaGodina(pg1);
+		f2.setPoslovniPartner(pp4);
+		f2.setPreduzece(p);
+		f2.setUkupanIznosBezPDV(0);
+		f2.setUkupanPDV(0);
+		f2.setUkupanRabat(0);
+		f2.setUkupnoZaPlacanje(0);
+		fakturaService.addFaktura(f2);
+		
+		StavkaFakture sf = new StavkaFakture();
+		sf.setFaktura(f);
+		sf.setIznosPDV(0);
+		sf.setJedinicnaCena(0);
+		sf.setKolicina(0);
+		sf.setOsnovica(0);
+		sf.setProizvod(pr0);
+		sf.setRabat(0);
+		sf.setStopaPDV(0);
+		sf.setUkupanIznos(0);
+		stavkaFaktureService.addStavkaFakture(sf);
+		StavkaFakture sf2 = new StavkaFakture();
+		sf2.setFaktura(f);
+		sf2.setIznosPDV(0);
+		sf2.setJedinicnaCena(0);
+		sf2.setKolicina(0);
+		sf2.setOsnovica(0);
+		sf2.setProizvod(pr0);
+		sf2.setRabat(0);
+		sf2.setStopaPDV(0);
+		sf2.setUkupanIznos(0);
+		stavkaFaktureService.addStavkaFakture(sf2);
 	}
 }
