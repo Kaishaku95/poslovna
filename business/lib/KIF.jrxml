@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7294e49d-8253-403f-8652-c6f9d2e0098f">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -16,8 +16,7 @@
 cG9zbG92bm9nX3BhcnRuZXJhICw1MTAsNTQsMDdlN2JiNmMtODE3Yi00NTVhLWE0MjctYmM3YTU4
 YjNkYTBkO3Bvc2xvdm5pX3BhcnRuZXIgLDMwNSwyOCxlZDA0MmU4NS1lODljLTRjMzktYTQxYS0w
 NmJlZTM4NGY0YWI7c3RhdmthX2Zha3R1cmUgLDE1LDY3LGRkYTc1MzIyLTdjOTctNGRjMy1hMDJk
-LTc0NTEzOTBhYTEwMzs=
-]]>
+LTc0NTEzOTBhYTEwMzs=]]>
 	</property>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="651"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="336"/>
@@ -126,7 +125,7 @@ WHERE
 			<textField>
 				<reportElement x="180" y="3" width="200" height="30" uuid="03f8849b-9437-4ecd-8563-c4ad856406fc"/>
 				<textElement textAlignment="Center" verticalAlignment="Top"/>
-				<textFieldExpression><![CDATA["OD " + new Date($P{beginDate}) + " DO " + new Date($P{endDate})]]></textFieldExpression>
+				<textFieldExpression><![CDATA["OD " + new SimpleDateFormat("MM/dd/yyyy").format($P{beginDate}) + " DO " + new SimpleDateFormat("MM/dd/yyyy").format($P{endDate})]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

@@ -42,9 +42,9 @@ public class izvestajController {
 		String jrxml = libPath + "FSS.jrxml";
 		String jasper = libPath + "FSS.jasper";
 		String filename = "FSS " + id + ".pdf";
-		makeReport(jrxml, jasper, hm, filename);
+		String out = makeReport(jrxml, jasper, hm, filename);
 		
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(out,HttpStatus.OK);
 	}
 	
 	@GetMapping(path="/KIF/{beginDate}/{endDate}")
@@ -55,22 +55,24 @@ public class izvestajController {
 		HashMap<String, Object> hm = new HashMap<>();
 		hm.put("beginDate", beginDate);
 		hm.put("endDate", endDate);
-		makeReport(jrxml, jasper, hm, filename);
+		String out = makeReport(jrxml, jasper, hm, filename);
 		
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(out,HttpStatus.OK);
 	}
 	
-	private void makeReport(String reportFile, String jasper, Map<String, Object> hm, String filename) {
-		String output = System.getProperty("user.dir") + System.getProperty("file.separator") + filename;
+	private String makeReport(String reportFile, String jasper, Map<String, Object> hm, String filename) {
+		String output = null;
 		try {
 			JasperCompileManager.compileReportToFile(reportFile, jasper);
 			Class.forName(dbDriver);
 			Connection conn = DriverManager.getConnection(dbUrl, username, password);
 			JasperPrint jprint = (JasperPrint) JasperFillManager.fillReport(jasper, hm, conn);
+			output = System.getProperty("user.dir") + System.getProperty("file.separator") + filename;
 			JasperExportManager.exportReportToPdfFile(jprint, output);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return output;
 	}
 	
 }
