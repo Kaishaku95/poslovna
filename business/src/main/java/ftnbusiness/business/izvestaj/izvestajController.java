@@ -44,10 +44,7 @@ public class izvestajController {
 		String jrxml = libPath + "FSS.jrxml";
 		String jasper = libPath + "FSS.jasper";
 		String filename = "FSS " + id + ".pdf";
-		byte[] out = makeReport(jrxml, jasper, hm, filename);
-		HashMap<String, byte[]> ret = new HashMap<String, byte[]>();
-		ret.put("report", Base64Utils.encode(out));
-		return new ResponseEntity<>(ret, HttpStatus.OK);
+		return new ResponseEntity<>(makeReport(jrxml, jasper, hm, filename), HttpStatus.OK);
 	}
 
 	@GetMapping(path = "/KIF/{beginDate}/{endDate}")
@@ -58,13 +55,10 @@ public class izvestajController {
 		HashMap<String, Object> hm = new HashMap<>();
 		hm.put("beginDate", beginDate);
 		hm.put("endDate", endDate);
-		byte[] out = makeReport(jrxml, jasper, hm, filename);
-		HashMap<String, byte[]> ret = new HashMap<String, byte[]>();
-		ret.put("report", Base64Utils.encode(out));
-		return new ResponseEntity<>(ret, HttpStatus.OK);
+		return new ResponseEntity<>(makeReport(jrxml, jasper, hm, filename), HttpStatus.OK);
 	}
 
-	private byte[] makeReport(String reportFile, String jasper, Map<String, Object> hm, String filename) {
+	private HashMap<String,String> makeReport(String reportFile, String jasper, Map<String, Object> hm, String filename) {
 		byte[] ret = null;
 		try {
 			Class.forName(dbDriver);
@@ -75,7 +69,9 @@ public class izvestajController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return ret;
+		HashMap<String,String> map = new HashMap<>();
+		map.put("report", Base64Utils.encodeToString(ret));
+		return map;
 	}
 
 }
