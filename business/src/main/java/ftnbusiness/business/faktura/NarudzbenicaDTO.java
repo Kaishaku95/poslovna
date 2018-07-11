@@ -35,6 +35,20 @@ public class NarudzbenicaDTO {
 	public NarudzbenicaDTO() {
 		super();
 	}
+
+	public NarudzbenicaDTO(NarudzbenicaDTO narudzbenicaDTO) {
+		// TODO Auto-generated constructor stub
+		this.idPoslovnogPartnera=narudzbenicaDTO.getIdPoslovnogPartnera();
+		
+		this.stavke = new ArrayList<>();
+		for (StavkaFaktureDTO stavkaFaktureDTO : narudzbenicaDTO.getStavke())
+		{
+			if(stavkaFaktureDTO.getKolicina()>0)
+			{
+				stavke.add(stavkaFaktureDTO);
+			}
+		}
+	}
 	
 	
 	

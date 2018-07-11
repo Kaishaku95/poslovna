@@ -110,6 +110,15 @@ public class FakturaController {
 
 		return new ResponseEntity<Long>(idNoveFaktura, HttpStatus.OK);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET,value="/narudzbenica")
+	public ResponseEntity<NarudzbenicaDTO> getNarudzbenica(@RequestBody NarudzbenicaDTO narudzbenicaDTO)
+	{
+
+
+
+		return new ResponseEntity<NarudzbenicaDTO>(new NarudzbenicaDTO(narudzbenicaDTO), HttpStatus.OK);
+	}
 
 
 	@RequestMapping(method = RequestMethod.GET,value="/export/fakture/{id}")
