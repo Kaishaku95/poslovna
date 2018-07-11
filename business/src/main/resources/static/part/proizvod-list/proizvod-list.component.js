@@ -41,6 +41,11 @@ angular.module('proizvodList')
 				this.selectedStavka = stavka;
 			};
 
+			this.search = {};
+			this.previewToggle = () => {
+				this.isPreviewMode = !this.isPreviewMode;
+				this.search.kolicina ? delete this.search.kolicina : this.search.kolicina = '!0';
+			};
 			this.add = () => {
 				this.narudzbenica.stavke = this.stavke;
 				FakturaService.order(this.narudzbenica)
@@ -48,6 +53,7 @@ angular.module('proizvodList')
 						this.fakturaId = response.data;
 						this.refresh();
 						this.isAddMode = false;
+						this.previewToggle();
 						this.addStatus = '';
 					}, () => {
 						this.addStatus = 'Greška pri dodavanju narudžbenice';

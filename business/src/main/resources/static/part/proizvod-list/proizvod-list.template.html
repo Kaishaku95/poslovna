@@ -46,7 +46,7 @@
 	<div class="input-group input-group-lg mr-2">
 		<input type="text"
 			class="form-control"
-			ng-model="$ctrl.search"
+			ng-model="$ctrl.search.$"
 			placeholder="Pretraga"
 			autofocus/>
 		<div class="input-group-append">
@@ -62,16 +62,24 @@
 	<label for="partnerSelect" class="mr-2">Poslovni partner:</label>
 	<select id="partnerSelect"
 		class="form-control mr-sm-2 custom-select"
+		ng-disabled="$ctrl.isPreviewMode"
 		ng-model="$ctrl.narudzbenica.idPoslovnogPartnera"
 		required>
 			<option value="">---Izaberite poslovnog partnera---</option>
 			<option ng-repeat="partner in $ctrl.partneri track by partner.id"
 				ng-value="partner.id">{{partner.naziv}}</option>
 	</select>
+	<button
+		class="btn btn-custom mr-2"
+		ng-click="addNarudzbenicaForm.$valid && $ctrl.previewToggle()">
+			<i class="fas fa-eye"></i>
+			Prikaži narudžbenicu
+	</button>
 	<input type="submit"
 		class="btn btn-custom mr-2"
 		value="Naruči"
-		ng-click="addNarudzbenicaForm.$valid && $ctrl.add()">
+		ng-if="$ctrl.isPreviewMode"
+		ng-click="$ctrl.add()">
 	{{$ctrl.addStatus}}
 </form>
 
@@ -110,6 +118,7 @@
 							<div class="input-group mr-sm-2">
 								<input type="number"
 									class="form-control"
+									ng-disabled="$ctrl.isPreviewMode"
 									ng-model="stavka.kolicina"
 									placeholder="Količina"
 									step="1"
