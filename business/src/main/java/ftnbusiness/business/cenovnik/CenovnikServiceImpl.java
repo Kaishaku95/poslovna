@@ -39,6 +39,27 @@ public class CenovnikServiceImpl implements CenovnikService{
 		}
  		return c;
 	}
+	@Override
+	public Cenovnik findActive(long currentTimeMillis) {
+		ArrayList<Cenovnik> cenovnici = (ArrayList<Cenovnik>) cenovnikRepository.findAll();
+		if(cenovnici == null || cenovnici.isEmpty()) {
+			return null;
+		}
+		Cenovnik c = null;
+		for(int i = 0; i<cenovnici.size(); i++) {
+			if(cenovnici.get(i).getDatumVazenja()<=currentTimeMillis) {
+				if(c!=null) {
+					if(c.getDatumVazenja()>cenovnici.get(i).getDatumVazenja()) {
+						c = cenovnici.get(i);
+					}
+				}
+				else {
+					c = cenovnici.get(i);
+				}
+			}
+		}
+		return c;
+	}
 	
 
 }

@@ -11,4 +11,6 @@ public interface CenovnikService {
 	Cenovnik findOne(Long id);
 	
 	Cenovnik findNewest();
+
+	Cenovnik findActive(long currentTimeMillis);
 }

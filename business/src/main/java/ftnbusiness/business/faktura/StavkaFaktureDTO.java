@@ -12,7 +12,7 @@ public class StavkaFaktureDTO {
 	
 	private double pdv;
 	
-	private double kolicina;
+	private int kolicina;
 	
 	public StavkaFaktureDTO() {
 		super();
@@ -50,11 +50,11 @@ public class StavkaFaktureDTO {
 		this.pdv = pdv;
 	}
 
-	public double getKolicina() {
+	public int getKolicina() {
 		return kolicina;
 	}
 
-	public void setKolicina(double kolicina) {
+	public void setKolicina(int kolicina) {
 		this.kolicina = kolicina;
 	}
 	

@@ -14,7 +14,7 @@ public class StavkaFakture {
 	@GeneratedValue
 	private Long id;
 
-	private double kolicina;
+	private int kolicina;
 	
 	private double rabat;
 	
@@ -34,7 +34,7 @@ public class StavkaFakture {
 	@ManyToOne
 	private Proizvod proizvod;
 
-	public StavkaFakture(Long id, double kolicina, double rabat, double jedinicnaCena, double stopaPDV, double osnovica,
+	public StavkaFakture(Long id, int kolicina, double rabat, double jedinicnaCena, double stopaPDV, double osnovica,
 			double iznosPDV, double ukupanIznos, Faktura faktura, Proizvod proizvod) {
 		super();
 		this.id = id;
@@ -61,11 +61,11 @@ public class StavkaFakture {
 		this.id = id;
 	}
 
-	public double getKolicina() {
+	public int getKolicina() {
 		return kolicina;
 	}
 
-	public void setKolicina(double kolicina) {
+	public void setKolicina(int kolicina) {
 		this.kolicina = kolicina;
 	}
 

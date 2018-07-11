@@ -161,8 +161,7 @@ public class FakturaController {
 			StavkaFaktureDTO sDTO = new StavkaFaktureDTO();
 			sDTO.setProizvod(proizvodi.get(i));
 			PDV pdv = proizvodi.get(i).getGrupaProizvoda().getPdv();
-			Cenovnik c = cenovnikService.findNewest();
-			stavkaCenovnikaService.findCenaByCenovnikAndProizvod(c, proizvodi.get(i));
+			Cenovnik c = cenovnikService.findActive(System.currentTimeMillis());
 			sDTO.setCena(stavkaCenovnikaService.findCenaByCenovnikAndProizvod(c, proizvodi.get(i)));
 			sDTO.setStopaPDV(stopaPDVService.findNewestByPDV(pdv));
 			sDTO.setPdv(sDTO.getCena()*sDTO.getStopaPDV()/100);
