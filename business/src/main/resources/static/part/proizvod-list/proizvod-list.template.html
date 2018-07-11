@@ -110,9 +110,9 @@
 					<td>{{stavka.proizvod.vrstaProizvoda.naziv}}</td>
 					<td>{{stavka.proizvod.jedinicaMere.naziv}}</td>
 					<td>{{stavka.proizvod.preduzece.naziv}}</td>
-					<td>{{stavka.cena}}</td>
-					<td>{{stavka.stopaPDV}}</td>
-					<td>{{stavka.pdv}}</td>
+					<td>{{stavka.cena | number}}</td>
+					<td>{{stavka.stopaPDV | number}}</td>
+					<td>{{stavka.pdv | number}}</td>
 					<td ng-if="$ctrl.isAddMode" class="w-25">
 						<form class="form-inline">
 							<div class="input-group mr-sm-2">
@@ -129,7 +129,7 @@
 									</span>
 								</div>
 								<div class="text-center m-2">
-									={{stavka.kolicina * (stavka.cena + stavka.pdv)}}
+									={{stavka.kolicina * (stavka.cena + stavka.pdv) | number}}
 								</div>
 							</div>
 						</form>

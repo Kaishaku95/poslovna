@@ -111,7 +111,7 @@
 					<td>{{stavka.proizvod.vrstaProizvoda.naziv}}</td>
 					<td>{{stavka.proizvod.jedinicaMere.naziv}}</td>
 					<td>{{stavka.proizvod.preduzece.naziv}}</td>
-					<td>{{stavka.cena}}</td>
+					<td>{{stavka.cena | number}}</td>
 					<td ng-if="$ctrl.isAddMode" class="w-25">
 						<form class="form-inline">
 							<div class="input-group mr-sm-2">
