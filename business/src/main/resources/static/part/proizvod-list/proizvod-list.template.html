@@ -81,6 +81,10 @@
 		<thead>
 			<tr>
 				<th>Proizvod:</th>
+				<th>Grupa proizvoda:</th>
+				<th>Vrsta proizvoda:</th>
+				<th>Jedinica mere:</th>
+				<th>Preduzeće:</th>
 				<th>Cena:</th>
 				<th>Stopa PDV:</th>
 				<th>PDV:</th>
@@ -94,6 +98,10 @@
 				ng-click="$ctrl.selected(stavka)"
 				ng-class="{'active-row': $ctrl.selectedStavka.proizvod.id === stavka.proizvod.id}">
 					<td>{{stavka.proizvod.naziv}}</td>
+					<td>{{stavka.proizvod.grupaProizvoda.nazivGrupe}}</td>
+					<td>{{stavka.proizvod.vrstaProizvoda.naziv}}</td>
+					<td>{{stavka.proizvod.jedinicaMere.naziv}}</td>
+					<td>{{stavka.proizvod.preduzece.naziv}}</td>
 					<td>{{stavka.cena}}</td>
 					<td>{{stavka.stopaPDV}}</td>
 					<td>{{stavka.pdv}}</td>
@@ -104,11 +112,15 @@
 									class="form-control"
 									ng-model="stavka.kolicina"
 									placeholder="Količina"
+									step="1"
 									min="0"/>
 								<div class="input-group-append">
 									<span class="input-group-text">
-										<i class="fas fa-shopping-cart"></i>
+										{{stavka.proizvod.jedinicaMere.skracenica | uppercase}}
 									</span>
+								</div>
+								<div class="text-center m-2">
+									={{stavka.kolicina * (stavka.cena + stavka.pdv)}}
 								</div>
 							</div>
 						</form>

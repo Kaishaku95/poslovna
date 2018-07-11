@@ -1,0 +1,45 @@
+<div class="row justify-content-center align-items-center">
+	<div class="col-md-4 panel my-md-5">
+		<h2>Dnevnik izlaznih faktura za zadati datumski interval:</h2>
+		<form name="getKifForm">
+			<div class="form-group">
+				<label for="fromDateInput">Od:</label>
+				<input type="date"
+					id="fromDateInput"
+					class="form-control"
+					ng-model="$ctrl.fromDate"
+					required
+					autofocus/>
+			</div>
+			<div class="form-group">
+				<label for="toDateInput">Do:</label>
+				<input type="date"
+					id="toDateInput"
+					class="form-control"
+					ng-model="$ctrl.toDate"
+					min="{{$ctrl.fromDate | date:'yyyy-MM-dd'}}"
+					required/>
+			</div>
+			<button class="btn btn-custom"
+				ng-click="getKifForm.$valid && $ctrl.getKif()">
+					<i class="fas fa-file-invoice"></i>
+					Izgeneriši izveštaj
+			</button>
+			<a class="btn btn-custom"
+				ng-if="$ctrl.kif"
+				ng-href="data:application/pdf;base64,{{$ctrl.kif}}"
+				download="{{$ctrl.fromDate.getTime()}}-{{$ctrl.toDate.getTime()}}.pdf">
+					<i class="fas fa-download"></i>
+					Preuzmi izveštaj
+			</a>
+			<p class="my-3">
+				{{$ctrl.status}}
+			</p>
+		</form>
+	</div>
+	<object class="col-md-8 p-md-2"
+		height="800"
+		ng-if="$ctrl.kif"
+		data="data:application/pdf;base64,{{$ctrl.kif}}">
+	</object>
+</div>

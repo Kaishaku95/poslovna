@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="KIF" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e4e4f454-06e9-4f94-ba62-48ab0059e8c1">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[c3RhdmthX2Zha3R1cmUgLDEwOCwxNSwwNThjYzJhNy03ZmNmLTRkOWUtOTQ2YS0yZTJjMDQzMTgw
+MGI7ZmFrdHVyYSAsMjUyLDkzLGNhY2VhYzMyLWJjZDctNDI4Mi05MjQyLWJmMGI4ZTA4ZGJkNDtw
+cm9penZvZCAsMTUsOTMsZTE1NzlkMjQtNDQxNS00Y2E5LThlM2ItYTgxN2ZlZWJmNDIzOw==]]>
+	</property>
+	<parameter name="id" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[SELECT faktura.broj_fakture AS ID,
+	proizvod.naziv AS sID,
+	stavka_fakture.kolicina AS sKolicina,
+	stavka_fakture.jedinicna_cena AS sJedinicnaCena,
+	stavka_fakture.ukupan_iznos AS sUkupanIznos,
+	stavka_fakture.stopapdv AS sStopaPDV,
+	stavka_fakture.kolicina AS sKolicina,
+	stavka_fakture.osnovica AS sOsnovica,
+	stavka_fakture.rabat AS sRabat
+FROM faktura
+	INNER JOIN stavka_fakture ON 
+	 stavka_fakture.faktura_id = faktura.id 
+	INNER JOIN proizvod ON 
+	 proizvod.id = stavka_fakture.proizvod_id 
+WHERE 
+	 faktura.id = $P{id}]]>
+	</queryString>
+	<field name="ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="faktura"/>
+	</field>
+	<field name="sID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="sID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proizvod"/>
+	</field>
+	<field name="sKolicina" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="sKolicina"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="stavka_fakture"/>
+	</field>
+	<field name="sJedinicnaCena" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="sJedinicnaCena"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="stavka_fakture"/>
+	</field>
+	<field name="sUkupanIznos" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="sUkupanIznos"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="stavka_fakture"/>
+	</field>
+	<field name="sStopaPDV" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="sStopaPDV"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="stavka_fakture"/>
+	</field>
+	<field name="COLUMN_7" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="sKolicina"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="stavka_fakture"/>
+	</field>
+	<field name="sOsnovica" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="sOsnovica"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="stavka_fakture"/>
+	</field>
+	<field name="sRabat" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="sRabat"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="stavka_fakture"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="75" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="30" uuid="a266aa3a-7544-46d3-90a1-9e94394e4924"/>
+				<textFieldExpression><![CDATA["Broj fakture: " + $F{ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="0" width="100" height="30" uuid="1e74dd1e-b413-44a3-933f-75cd2ad3a3f1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Strana " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="44" width="70" height="30" uuid="39287b77-632f-47b3-8681-dace90210399"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Naziv stavke]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="44" width="90" height="30" uuid="6822b584-adc7-4f28-99cd-f32b1e6d6915"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Jedinična cena]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="44" width="70" height="30" uuid="e75c474a-86d5-4f2b-8251-9295503e262f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Količina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="44" width="70" height="30" uuid="050e9f6b-1973-4ddb-8515-957e0cee521a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Rabat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="44" width="70" height="30" uuid="bfc2e77a-3dac-43f3-a13d-bffbf5de1f6e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Stopa PDV-a]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="44" width="100" height="30" uuid="d1f6d91a-4ef7-4872-9b33-0e4b0e4030e1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Osnovica]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="74" width="559" height="1" uuid="16c7b999-e8ea-441d-b34d-d72c833af2c7"/>
+			</line>
+			<staticText>
+				<reportElement x="470" y="44" width="90" height="30" uuid="ef82c1a9-93d9-47a1-ba88-18f7f1931e64"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Ukupan iznos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="70" height="20" uuid="c42c338d-0ad6-4fff-8dc4-5155b0b137d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="0" width="90" height="20" uuid="3d41cac4-8fb8-499b-8bd6-3f3a2a9c2ec5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sJedinicnaCena}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="70" height="20" uuid="07504e4a-ad6e-4033-a42e-bf849007a94b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sKolicina}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="0" width="100" height="20" uuid="aa4ab60b-2d0e-4296-9d30-ea3d719b3f95"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sOsnovica}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="0" width="70" height="20" uuid="bbe88d87-a10a-48c0-862d-b0f7d9d66391"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sRabat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="-1" width="70" height="20" uuid="761b7672-eb64-4219-996e-e35b13000c8e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sStopaPDV}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="0" width="90" height="20" uuid="9914cf5e-2651-423a-89d0-70a3ebd1d08e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sUkupanIznos}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="560" height="1" uuid="40cf0273-369c-4503-90d6-0b867b47fc7d"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

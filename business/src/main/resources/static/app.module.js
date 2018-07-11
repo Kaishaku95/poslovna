@@ -5,5 +5,6 @@ angular.module('app', [
 	'header',
 	'cenovnikList',
 	'proizvodList',
-	'fakturaList'
+	'fakturaList',
+	'kif'
 ]);

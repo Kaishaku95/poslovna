@@ -122,12 +122,12 @@ public class FakturaController {
 
 
 	@RequestMapping(method = RequestMethod.GET,value="/export/fakture/{id}")
-	public ResponseEntity<HashMap<String,String>> postFakture(@PathParam("id") Long id, HttpServletResponse response)
+	public ResponseEntity<HashMap<String,String>> postFakture(@PathVariable Long id, HttpServletResponse response)
 	{
-		//Faktura novaFaktura = fakturaService.getById(id);
+		Faktura novaFaktura = fakturaService.getById(id);
 		long derp =5;
 
-		Faktura novaFaktura=new Faktura(derp, "Ovo je mock faktura", derp, derp, derp, derp, derp, derp, new PoslovniPartner(), new Preduzece(), new PoslovnaGodina());
+		//Faktura novaFaktura=new Faktura(derp, "Ovo je mock faktura", derp, derp, derp, derp, derp, derp, new PoslovniPartner(), new Preduzece(), new PoslovnaGodina());
 		try
 		{
 

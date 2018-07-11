@@ -24,6 +24,11 @@ angular.module('app')
 				component: 'myFakturaList'
 			})
 			.state({
+				name: 'kif',
+				url: '/kif',
+				component: 'myKif'
+			})
+			.state({
 				name: 'error',
 				url: '/error',
 				template: '<h1>Error 404</h1>'

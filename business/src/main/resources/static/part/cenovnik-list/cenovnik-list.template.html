@@ -73,7 +73,9 @@
 
 <!--Add new form-->
 <form ng-if="$ctrl.isAddMode" name="addCenovnikForm" class="form-inline mb-1">
+	<label for="dateInput" class="mr-2">Datum početka važenja:</label>
 	<input type="date"
+		id="dateInput"
 		class="form-control mr-2"
 		ng-model="$ctrl.newCenovnik.ddatum"
 		required/>
@@ -90,6 +92,9 @@
 		<thead>
 			<tr>
 				<th>Proizvod:</th>
+				<th>Grupa proizvoda:</th>
+				<th>Vrsta proizvoda:</th>
+				<th>Jedinica mere:</th>
 				<th>Preduzeće:</th>
 				<th>Cena:</th>
 				<th ng-if="$ctrl.isAddMode" class="w-25">
@@ -102,6 +107,9 @@
 				ng-click="$ctrl.selected(stavka)"
 				ng-class="{'active-row': $ctrl.selectedStavka.id === stavka.id}">
 					<td>{{stavka.proizvod.naziv}}</td>
+					<td>{{stavka.proizvod.grupaProizvoda.nazivGrupe}}</td>
+					<td>{{stavka.proizvod.vrstaProizvoda.naziv}}</td>
+					<td>{{stavka.proizvod.jedinicaMere.naziv}}</td>
 					<td>{{stavka.proizvod.preduzece.naziv}}</td>
 					<td>{{stavka.cena}}</td>
 					<td ng-if="$ctrl.isAddMode" class="w-25">

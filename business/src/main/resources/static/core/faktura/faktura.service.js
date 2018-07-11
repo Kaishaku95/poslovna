@@ -22,6 +22,12 @@ angular.module('core.faktura')
 		this.getExport = (id) => {
 			return $http.get(`${prefix}/export/fakture/${id}`);
 		};
+		this.getReport = (id) => {
+			return $http.get(`${prefix}/izvestaj/FSS/${id}`);
+		};
+		this.getKif = (fromDate, toDate) => {
+			return $http.get(`${prefix}/izvestaj/KIF/${fromDate}/${toDate}`);
+		};
 		this.order = (data) => {
 			return $http.post(`${prefix}/fakture`, data);
 		};
