@@ -11,13 +11,7 @@
 	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
-	<property name="com.jaspersoft.studio.data.sql.tables">
-		<![CDATA[ZmFrdHVyYSAsMTMzLDE1LGFlZGRkYTQxLWRhZGQtNGY4Mi05Yjk3LTI4MmViMDkyNDM4YTt0aXBf
-cG9zbG92bm9nX3BhcnRuZXJhICw1MTAsNTQsMDdlN2JiNmMtODE3Yi00NTVhLWE0MjctYmM3YTU4
-YjNkYTBkO3Bvc2xvdm5pX3BhcnRuZXIgLDMwNSwyOCxlZDA0MmU4NS1lODljLTRjMzktYTQxYS0w
-NmJlZTM4NGY0YWI7c3RhdmthX2Zha3R1cmUgLDE1LDY3LGRkYTc1MzIyLTdjOTctNGRjMy1hMDJk
-LTc0NTEzOTBhYTEwMzs=]]>
-	</property>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="651"/>
 	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="336"/>
 	<parameter name="beginDate" class="java.lang.Long"/>
@@ -35,8 +29,7 @@ FROM faktura
 	INNER JOIN tip_poslovnog_partnera ON 
 	 poslovni_partner.tip_poslovnog_partnera_id = tip_poslovnog_partnera.id
 WHERE 
-	 tip_poslovnog_partnera.naziv LIKE '%Dobavljac' 
-	 AND (faktura.datum_fakture BETWEEN $P{beginDate} AND $P{endDate})]]>
+	(faktura.datum_fakture BETWEEN $P{beginDate} AND $P{endDate})]]>
 	</queryString>
 	<field name="ID" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="ID"/>

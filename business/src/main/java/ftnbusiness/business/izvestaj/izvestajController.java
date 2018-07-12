@@ -2,7 +2,6 @@ package ftnbusiness.business.izvestaj;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,22 +42,20 @@ public class izvestajController {
 
 		String jrxml = libPath + "FSS.jrxml";
 		String jasper = libPath + "FSS.jasper";
-		String filename = "FSS " + id + ".pdf";
-		return new ResponseEntity<>(makeReport(jrxml, jasper, hm, filename), HttpStatus.OK);
+		return new ResponseEntity<>(makeReport(jrxml, jasper, hm), HttpStatus.OK);
 	}
 
 	@GetMapping(path = "/KIF/{beginDate}/{endDate}")
 	public ResponseEntity<?> getKIF(@PathVariable Long beginDate, @PathVariable Long endDate) {
 		String jrxml = libPath + "KIF.jrxml";
 		String jasper = libPath + "KIF.jasper";
-		String filename = "KIF " + new Date().getTime() + ".pdf";
 		HashMap<String, Object> hm = new HashMap<>();
 		hm.put("beginDate", beginDate);
 		hm.put("endDate", endDate);
-		return new ResponseEntity<>(makeReport(jrxml, jasper, hm, filename), HttpStatus.OK);
+		return new ResponseEntity<>(makeReport(jrxml, jasper, hm), HttpStatus.OK);
 	}
 
-	private HashMap<String,String> makeReport(String reportFile, String jasper, Map<String, Object> hm, String filename) {
+	private HashMap<String,String> makeReport(String reportFile, String jasper, Map<String, Object> hm) {
 		byte[] ret = null;
 		try {
 			Class.forName(dbDriver);
