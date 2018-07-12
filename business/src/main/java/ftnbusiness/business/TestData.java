@@ -441,7 +441,7 @@ public class TestData {
 		sf.setProizvod(pr0);
 		sf.setRabat(0);
 		sf.setStopaPDV(0);
-		sf.setUkupanIznos(0);
+		sf.setUkupanIznos(1);
 		stavkaFaktureService.addStavkaFakture(sf);
 		StavkaFakture sf2 = new StavkaFakture();
 		sf2.setFaktura(f);
@@ -452,7 +452,7 @@ public class TestData {
 		sf2.setProizvod(pr0);
 		sf2.setRabat(0);
 		sf2.setStopaPDV(0);
-		sf2.setUkupanIznos(0);
+		sf2.setUkupanIznos(2);
 		stavkaFaktureService.addStavkaFakture(sf2);
 	}
 }

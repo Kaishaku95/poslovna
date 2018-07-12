@@ -62,6 +62,9 @@ WHERE
 		<property name="com.jaspersoft.studio.field.label" value="ppAdresa"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="poslovni_partner"/>
 	</field>
+	<variable name="total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{ukupnoZaPlacanje}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -89,7 +92,7 @@ WHERE
 			<staticText>
 				<reportElement x="110" y="53" width="160" height="30" uuid="d0592bc2-2d26-43ee-93f0-437d17cc0a97"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="false"/>
+					<font isBold="false" pdfEncoding="Cp1250"/>
 				</textElement>
 				<text><![CDATA[NAZIV I MESTO DOBAVLJAČA]]></text>
 			</staticText>
@@ -149,7 +152,7 @@ WHERE
 			<textField>
 				<reportElement x="381" y="-3" width="108" height="40" uuid="5fdfa86e-b0ec-4ddf-9c7d-78d474c2ed57"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{ukupnoZaPlacanje}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("0.00").format($F{ukupnoZaPlacanje})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="51" y="0" width="60" height="38" uuid="b1873ead-873c-4222-8352-79a91b22be88"/>
@@ -166,4 +169,13 @@ WHERE
 			</staticText>
 		</band>
 	</detail>
+	<summary>
+		<band height="50">
+			<textField>
+				<reportElement x="381" y="10" width="169" height="30" uuid="b01d34c9-9181-4a83-9452-9102ef197818"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Ukupno:    " + new DecimalFormat("0.00").format($V{total}) + " Dinara (RSD)"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
 </jasperReport>
