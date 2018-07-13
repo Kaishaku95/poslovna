@@ -47,18 +47,14 @@ public class CenovnikServiceImpl implements CenovnikService{
 		}
 		Cenovnik c = null;
 		for(int i = 0; i<cenovnici.size(); i++) {
-			System.out.println(cenovnici.size());
 			if(cenovnici.get(i).getDatumVazenja()<=currentTimeMillis) {
 				if(c!=null) {
 					if(c.getDatumVazenja()<cenovnici.get(i).getDatumVazenja()) {
 						c = cenovnici.get(i);
-						System.out.println("C "+c.getDatumVazenja());
 					}
-					System.out.println("B "+c.getDatumVazenja());
 				}
 				else {
 					c = cenovnici.get(i);
-					System.out.println("A "+c.getDatumVazenja());
 				}
 			}
 		}
