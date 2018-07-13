@@ -9,4 +9,6 @@ public interface PoslovniPartnerService {
 	PoslovniPartner getById(Long idPoslovnogPartnera);
 	
 	ArrayList<PoslovniPartner> findAll();
+
+	ArrayList<PoslovniPartner> findAllKupac();
 }

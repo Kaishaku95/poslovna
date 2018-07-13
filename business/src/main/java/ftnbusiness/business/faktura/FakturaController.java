@@ -98,7 +98,7 @@ public class FakturaController {
 	@GetMapping("/partneri")
 	public ResponseEntity<ArrayList<PoslovniPartner>> getPoslovniPartneri()
 	{
-		return new ResponseEntity<ArrayList<PoslovniPartner>>(poslovniPartnerService.findAll(), HttpStatus.OK);
+		return new ResponseEntity<ArrayList<PoslovniPartner>>(poslovniPartnerService.findAllKupac(), HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST,value="/fakture")

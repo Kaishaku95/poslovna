@@ -28,5 +28,10 @@ public class PoslovniPartnerServiceImpl implements PoslovniPartnerService{
 	public ArrayList<PoslovniPartner> findAll() {
 		return (ArrayList<PoslovniPartner>) poslovniPartnerRepository.findAll();
 	}
+	@Override
+	public ArrayList<PoslovniPartner> findAllKupac() {
+		// TODO Auto-generated method stub
+		return poslovniPartnerRepository.findByTipPoslovnogPartnera_NazivContaining("Kupac");
+	}
 
 }
