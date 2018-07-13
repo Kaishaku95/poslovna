@@ -143,7 +143,7 @@ public class TestData {
 		vrstaProizvodaService.addVrstaProizvoda(vp3);
 		
 		Preduzece p = new Preduzece();
-		p.setAdresa("Duznicka 17, Beograd");
+		p.setAdresa("Beogradska 17, Beograd");
 		p.setNaziv("Balkan promet");
 		p.setKontakt("01123454326");
 		preduzeceService.addPreduzece(p);
@@ -367,12 +367,12 @@ public class TestData {
 		tipPoslovnogPartneraService.addTipPoslovnogPartnera(tpp3);
 		
 		PoslovniPartner pp1 = new PoslovniPartner();
-		pp1.setAdresa("Neizmirenih dugova bb, Zrenjanin");
-		pp1.setNaziv("Prevarant i sinovi doo");
+		pp1.setAdresa("Glavna bb, Zrenjanin");
+		pp1.setNaziv("Banat");
 		pp1.setKontakt("023333444");
 		pp1.setTipPoslovnogPartnera(tpp2);
 		PoslovniPartner pp2 = new PoslovniPartner();
-		pp2.setAdresa("Robovlasnicka 6, Novi Sad");
+		pp2.setAdresa("Sekspirova 6, Novi Sad");
 		pp2.setNaziv("Nanosoft");
 		pp2.setKontakt("021363444");
 		pp2.setTipPoslovnogPartnera(tpp2);
@@ -382,7 +382,7 @@ public class TestData {
 		pp3.setKontakt("011333444");
 		pp3.setTipPoslovnogPartnera(tpp1);
 		PoslovniPartner pp4 = new PoslovniPartner();
-		pp4.setAdresa("Sumnjiva 58, Zrenjanin");
+		pp4.setAdresa("Nova 58, Zrenjanin");
 		pp4.setNaziv("Haiti invest");
 		pp4.setKontakt("023333444");
 		pp4.setTipPoslovnogPartnera(tpp3);
@@ -407,6 +407,7 @@ public class TestData {
 		poslovnaGodinaService.addPoslovnaGodina(pg2);
 		poslovnaGodinaService.addPoslovnaGodina(pg3);
 
+		/*
 		Faktura f = new Faktura();
 		f.setBrojFakture("1");
 		f.setDatumFakture(1514764800000l);
@@ -454,5 +455,6 @@ public class TestData {
 		sf2.setStopaPDV(0);
 		sf2.setUkupanIznos(2);
 		stavkaFaktureService.addStavkaFakture(sf2);
+		*/
 	}
 }
