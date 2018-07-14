@@ -7,9 +7,6 @@ angular.module('core.vrstaproizvoda')
 		this.getAll = () => {
 			return $http.get(`${prefix}/`);
 		};
-		this.getOne = (id) => {
-			return $http.get(`${prefix}/${id}`);
-		};
 		this.add = (data) => {
 			return $http.post(`${prefix}/`, data);
 		};

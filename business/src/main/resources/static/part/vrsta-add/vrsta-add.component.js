@@ -8,12 +8,15 @@ angular.module('vrstaAdd')
 			.then( (response) => {
 				this.vrsteProizvoda = response.data;
 			});
-			
+			this.add = () => {
 			VrstaProizvodaService.add(this.vrstaProizvoda)
 			.then( () => {
+				console.log(this.vrstaProizvoda);
 				this.status = 'Uspesno dodato';
 			}, () => {
+				console.log(this.vrstaProizvoda);
 				this.status = 'Greska';
 			});
+			};
 		}
 	});

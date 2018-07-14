@@ -1,6 +1,6 @@
 <div class="row justify-content-center align-items-center">
 	<div class="col-md-4 panel my-md-5">
-		<h2>Dodavanje nove vrsta proizvoda:</h2>
+		<h2>Dodavanje nove vrste proizvoda:</h2>
 		<form name="addVrstaProizvoda">
 			<div class="form-group">
 				<label for="nazivs">Naziv:</label>
@@ -13,7 +13,7 @@
 			<input type="submit"
 			class="btn btn-custom"
 			value="Dodaj"
-			ng-click=addVrstaProizvoda.$valid && $ctrl.addVrstaProizvoda()"/>
+			ng-click="addVrstaProizvoda.$valid && $ctrl.add()"/>
 			<p class="my-3">
 				{{$ctrl.status}}
 			</p>
