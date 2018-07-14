@@ -3,5 +3,7 @@
 angular.module('core', [
 	'core.cenovnik',
 	'core.faktura',
-	'core.vrstaproizvoda'
+	'core.vrstaproizvoda',
+	'core.jedinicamere',
+	'core.proizvod'
 ]);

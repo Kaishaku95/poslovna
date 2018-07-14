@@ -40,7 +40,6 @@ public class VrstaProizvodaController {
 	
 	@PostMapping
 	public ResponseEntity<VrstaProizvoda> addVrstaProizvoda(@RequestBody VrstaProizvoda dto) {
-		//System.out.println(vrstaProizvodaService.findAll().size());
 		return new ResponseEntity<>(vrstaProizvodaService.add(dto), HttpStatus.OK);
 	}
 	
