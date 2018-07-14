@@ -68,7 +68,7 @@ public class ProizvodController {
 		
 		Cenovnik current = cenovnikService.findActive(System.currentTimeMillis());
 		List<Cenovnik> future = cenovnikService.findFuture(System.currentTimeMillis());
-		
+	
 		future.add(0, current);
 		
 		future.forEach(cenovnik -> {

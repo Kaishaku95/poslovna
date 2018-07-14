@@ -1,30 +1,56 @@
 <div class="row justify-content-center align-items-center">
 	<div class="col-md-4 panel my-md-5">
 		<h2>Dodavanje novog proizvoda:</h2>
-		<form name="getKifForm">
+		<form name="addProizvod">
 			<div class="form-group">
-				<label for="fromDateInput">Od:</label>
-				<input type="date"
-					id="fromDateInput"
-					class="form-control"
-					ng-model="$ctrl.fromDate"
-					required
-					autofocus/>
+				<label for="nazivs">Naziv:</label>
+				<input type="text"
+				class="form-group form-control"
+				placeholder="Unesite naziv"
+				ng-model="$ctrl.proizvod.naziv"
+				required/>
+				
+				<select id="jedinicaSelect"
+				class="form-control mr-sm-2 custom-select"
+				ng-disabled="$ctrl.isPreviewMode"
+				ng-model="$ctrl.proizvod.jedinicaMere"
+				required>
+				<option value="">---Izaberite jedinicu mere---</option>
+				<option ng-repeat="jedinica in $ctrl.jedinice"
+					ng-value="jedinica">{{jedinica.naziv}}</option>
+				</select>
+				
+				<select id="vrstaSelect"
+				class="form-control mr-sm-2 custom-select"
+				ng-disabled="$ctrl.isPreviewMode"
+				ng-model="$ctrl.proizvod.vrstaProizvoda"
+				required>
+				<option value="">---Izaberite vrstu proizvoda---</option>
+				<option ng-repeat="vrsta in $ctrl.vrste"
+					ng-value="vrsta">{{vrsta.naziv}}</option>
+				</select>
+				
+				<select id="grupaSelect"
+				class="form-control mr-sm-2 custom-select"
+				ng-disabled="$ctrl.isPreviewMode"
+				ng-model="$ctrl.proizvod.grupaProizvoda"
+				required>
+				<option value="">---Izaberite grupu proizvoda---</option>
+				<option ng-repeat="grupa in $ctrl.grupe"
+					ng-value="grupa">{{grupa.nazivGrupe}}</option>
+				</select>
+				
+				<label for="nazivs">Cena:</label>
+				<input type="number"
+				class="form-group form-control"
+				placeholder="Unesite cenu"
+				ng-model="$ctrl.proizvod.cena"
+				required/>
 			</div>
-			<div class="form-group">
-				<label for="toDateInput">Do:</label>
-				<input type="date"
-					id="toDateInput"
-					class="form-control"
-					ng-model="$ctrl.toDate"
-					min="{{$ctrl.fromDate | date:'yyyy-MM-dd'}}"
-					required/>
-			</div>
-			<button class="btn btn-custom"
-				ng-click="getKifForm.$valid && $ctrl.getKif()">
-					<i class="fas fa-file-invoice"></i>
-					Izgeneriši izveštaj
-			</button>
+			<input type="submit"
+			class="btn btn-custom"
+			value="Dodaj"
+			ng-click="addProizvod.$valid && $ctrl.add()"/>
 			<p class="my-3">
 				{{$ctrl.status}}
 			</p>

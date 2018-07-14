@@ -63,7 +63,7 @@ public class CenovnikServiceImpl implements CenovnikService{
 	@Override
 	public List<Cenovnik> findFuture(long currentTimeMillis) {
 		// TODO Auto-generated method stub
-		return null;
+		return cenovnikRepository.findByDatumVazenjaGreaterThan(currentTimeMillis);
 	}
 	
 
