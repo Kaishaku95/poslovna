@@ -104,3 +104,22 @@ my-sidebar {
 .custom-range::-moz-range-thumb {
 	background-color: var(--selected_bg_color);
 }
+
+
+.dropdown-menu {
+	background-color: var(--bg_color);
+}
+
+.dropdown-item {
+	color: var(--selected_bg_color);
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+	color: var(--selected_fg_color);
+	text-decoration: none;
+	background-color: var(--bg_color);
+}
+
+.dropdown-item.active, .dropdown-item:active {
+	background-color: var(--selected_bg_color);
+}

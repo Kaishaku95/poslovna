@@ -29,6 +29,21 @@ angular.module('app')
 				component: 'myKif'
 			})
 			.state({
+				name: 'proizvodAdd',
+				url: '/proizvod-add',
+				component: 'myProizvodAdd'
+			})
+			.state({
+				name: 'jedinicaAdd',
+				url: '/jedinica-add',
+				component: 'myJedinicaAdd'
+			})
+			.state({
+				name: 'vrstaAdd',
+				url: '/vrsta-add',
+				component: 'myVrstaAdd'
+			})
+			.state({
 				name: 'error',
 				url: '/error',
 				template: '<h1>Error 404</h1>'

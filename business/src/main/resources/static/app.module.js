@@ -6,5 +6,8 @@ angular.module('app', [
 	'cenovnikList',
 	'proizvodList',
 	'fakturaList',
-	'kif'
+	'kif',
+	'proizvodAdd',
+	'jedinicaAdd',
+	'vrstaAdd'
 ]);
