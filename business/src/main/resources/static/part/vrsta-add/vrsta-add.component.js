@@ -12,6 +12,7 @@ angular.module('vrstaAdd')
 			VrstaProizvodaService.add(this.vrstaProizvoda)
 			.then( () => {
 				console.log(this.vrstaProizvoda);
+				location.reload();
 				this.status = 'Uspesno dodato';
 			}, () => {
 				console.log(this.vrstaProizvoda);

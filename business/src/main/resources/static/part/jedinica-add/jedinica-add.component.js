@@ -12,6 +12,7 @@ angular.module('jedinicaAdd')
 			JedinicaMereService.add(this.jedinicaMere)
 			.then( () => {
 				console.log(this.jedinicaMere);
+				location.reload();
 				this.status = 'Uspesno dodato';
 			}, () => {
 				console.log(this.jedinicaMere);
