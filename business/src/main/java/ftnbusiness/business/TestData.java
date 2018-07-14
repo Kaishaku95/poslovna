@@ -244,6 +244,7 @@ public class TestData {
 		pr0.setPreduzece(p);
 		pr0.setVrstaProizvoda(vp3);
 		pr0.setGrupaProizvoda(gp4);
+		proizvodService.addProizvod(pr0);
 		proizvodService.addProizvod(pr1);
 		proizvodService.addProizvod(pr2);
 		proizvodService.addProizvod(pr3);
@@ -253,7 +254,7 @@ public class TestData {
 		proizvodService.addProizvod(pr7);
 		proizvodService.addProizvod(pr8);
 		proizvodService.addProizvod(pr9);
-		proizvodService.addProizvod(pr0);
+		
 
 		StavkaCenovnika sc1 = new StavkaCenovnika();
 		sc1.setCenovnik(c1);
