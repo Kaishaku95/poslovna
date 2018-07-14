@@ -53,7 +53,7 @@ public class ProizvodController {
 	public ResponseEntity<?> getAllTypes() {
 		return new ResponseEntity<>(vrstaService.findAll(), HttpStatus.OK);
 	}
-	/*
+	
 	@PostMapping
 	public ResponseEntity<?> addProizvod(@RequestBody ProizvodDTO dto) {
 		Proizvod p = new Proizvod();
@@ -62,17 +62,24 @@ public class ProizvodController {
 		p.setVrstaProizvoda(dto.getVrstaProizvoda());
 		p.setGrupaProizvoda(dto.getGrupaProizvoda());
 		p.setPreduzece(preduzeceService.getByName("Balkan promet"));
+		Long id = proizvodService.addProizvod(p);
+		
+		Proizvod proizvod = proizvodService.getById(id);
 		
 		Cenovnik current = cenovnikService.findActive(System.currentTimeMillis());
 		List<Cenovnik> future = cenovnikService.findFuture(System.currentTimeMillis());
 		
-		StavkaCenovnika sc = new StavkaCenovnika();
-		sc.setCena(dto.getCena());
-		sc.setCenovnik(current);
-		sc.setProizvod(p);
+		future.add(0, current);
 		
-		Long id = proizvodService.addProizvod(p);
-		return new ResponseEntity<>(proizvodService.getById(id), HttpStatus.OK);
+		future.forEach(cenovnik -> {
+			StavkaCenovnika sc = new StavkaCenovnika();
+			sc.setCena(dto.getCena());
+			sc.setCenovnik(cenovnik);
+			sc.setProizvod(proizvod);
+			stavkaService.addStavkaCenovnika(sc);
+		});
+		
+		return new ResponseEntity<>(proizvod, HttpStatus.OK);
 	}
-	 */
+	 
 }
