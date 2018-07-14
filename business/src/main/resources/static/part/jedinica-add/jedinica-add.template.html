@@ -1,30 +1,27 @@
 <div class="row justify-content-center align-items-center">
 	<div class="col-md-4 panel my-md-5">
 		<h2>Dodavanje nove jedinice mere:</h2>
-		<form name="getKifForm">
+		<form name="addJedinicaMere">
 			<div class="form-group">
-				<label for="fromDateInput">Od:</label>
-				<input type="date"
-					id="fromDateInput"
-					class="form-control"
-					ng-model="$ctrl.fromDate"
-					required
-					autofocus/>
+				<label for="nazivs">Naziv:</label>
+				<input type="text"
+				class="form-group form-control"
+				placeholder="Unesite naziv"
+				ng-model="$ctrl.jedinicaMere.naziv"
+				required/>
 			</div>
 			<div class="form-group">
-				<label for="toDateInput">Do:</label>
-				<input type="date"
-					id="toDateInput"
-					class="form-control"
-					ng-model="$ctrl.toDate"
-					min="{{$ctrl.fromDate | date:'yyyy-MM-dd'}}"
-					required/>
+				<label for="skracenica">Skracenica:</label>
+				<input type="text"
+				class="form-group form-control"
+				placeholder="Unesite skracenicu"
+				ng-model="$ctrl.jedinicaMere.skracenica"
+				required/>
 			</div>
-			<button class="btn btn-custom"
-				ng-click="getKifForm.$valid && $ctrl.getKif()">
-					<i class="fas fa-file-invoice"></i>
-					Izgeneriši izveštaj
-			</button>
+			<input type="submit"
+			class="btn btn-custom"
+			value="Dodaj"
+			ng-click="addJedinicaMere.$valid && $ctrl.add()"/>
 			<p class="my-3">
 				{{$ctrl.status}}
 			</p>

@@ -60,6 +60,11 @@ public class CenovnikServiceImpl implements CenovnikService{
 		}
 		return c;
 	}
+	@Override
+	public List<Cenovnik> findFuture(long currentTimeMillis) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }
