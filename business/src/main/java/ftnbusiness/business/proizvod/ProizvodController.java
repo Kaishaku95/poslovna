@@ -57,6 +57,9 @@ public class ProizvodController {
 	@PostMapping
 	public ResponseEntity<?> addProizvod(@RequestBody ProizvodDTO dto) {
 		Proizvod p = new Proizvod();
+		if(dto.getCena()<=0) {
+			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+		}
 		p.setNaziv(dto.getNaziv());
 		p.setJedinicaMere(dto.getJedinicaMere());
 		p.setVrstaProizvoda(dto.getVrstaProizvoda());
