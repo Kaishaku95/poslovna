@@ -3,10 +3,10 @@
 angular.module('jedinicaAdd')
 	.component('myJedinicaAdd', {
 		templateUrl: '/part/jedinica-add/jedinica-add.template.html',
-		controller: function() {
+		controller: function(JedinicaMereService) {
 			JedinicaMereService.getAll()
 			.then( (response) => {
-				this.jedinicaMere = response.data;
+				this.jediniceMere = response.data;
 			});
 			this.add = () => {
 			JedinicaMereService.add(this.jedinicaMere)
